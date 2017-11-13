@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "147778828353",
+    "firebase_url": "https://quatro-caf12.firebaseio.com",
+    "project_id": "quatro-caf12",
+    "storage_bucket": "quatro-caf12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147778828353:android:8b2ede01434a912f",
+        "android_client_info": {
+          "package_name": "edu.dlsu.mobapde.quatro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147778828353-mbut18agv0ta197u7ip6poeqcch8g1h9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.dlsu.mobapde.quatro",
+            "certificate_hash": "cbb3813e30ba33785012151ee83db40f328cdb64"
+          }
+        },
+        {
+          "client_id": "147778828353-0c4vkiik2n7gip6oiuka1eobcqkb0qbu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlddhGdEmvSZbakfwvbk8Zk1VCfhIEdLY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "147778828353-0c4vkiik2n7gip6oiuka1eobcqkb0qbu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

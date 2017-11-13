@@ -1,0 +1,37 @@
+{
+  "students": {
+    "student_1" : {
+      "student_id"  : 1,
+      "email"       : "co.janellamarie@gmail.com",
+      "password"    : "hehexd",
+      "first_name"  : "Janella",
+      "last_name"   : "Co",
+      "college"     : "CCS",
+      "course"      : "BSCS-ST"
+    },
+
+    "student_2" : {
+      "student_id"  : 2,
+      "email"       : "some random email",
+      "password"    : "wow",
+      "first_name"  : "Norielle",
+      "last_name"   : "Aguila",
+      "college"     : "CCS",
+      "course"      : "BSCS-ST"
+    },
+
+    "student_3" : {
+      "student_id"  : 3,
+      "email"       : "email@email.com",
+      "password"    : "xd",
+      "first_name"  : "Caleb",
+      "last_name"   : "Pensica",
+      "college"     : "CCS",
+      "course"      : "BSCS-ST"
+    }
+  },
+
+  "faculty": {
+
+  }
+}
