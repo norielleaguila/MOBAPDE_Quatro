@@ -11,7 +11,7 @@ public class Review extends Post {
     public Review(int userIcon, String userName, String profName, String course, double grade, int upVotes, int downVotes, String review) {
         super(userIcon, userName, profName, course, grade, upVotes, downVotes);
         this.review = review;
-        this.action = "review";
+        this.action = "Reviewed";
     }
 
     public String getReview() {

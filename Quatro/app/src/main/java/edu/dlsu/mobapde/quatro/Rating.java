@@ -10,7 +10,7 @@ public class Rating extends Post {
     public Rating(int userIcon, String userName, String profName, String course, double grade, int upVotes, int downVotes, float rating) {
         super(userIcon, userName, profName, course, grade, upVotes, downVotes);
         this.rating = rating;
-        this.action = action;
+        this.action = "Rated";
     }
 
     public float getRating() {

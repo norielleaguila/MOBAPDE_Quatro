@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,14 +24,11 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view;
         switch (viewType){
             case 0:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_rating, parent, false);
-                return new RatingHolder(view);
+                return new RatingHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.post_rating, parent, false));
             case 1:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_review, parent, false);
-                return new ReviewHolder(view);
+                return new ReviewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.post_review, parent, false));
         }
         return null;
     }
@@ -70,8 +68,8 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.profName.setText(curr.getProfName());
         holder.course.setText(curr.getCourse());
         holder.grade.setText(curr.getGrade() + "");
-        holder.upVotes.setText(curr.getUpVotes());
-        holder.downVotes.setText(curr.getDownVotes());
+        holder.upVotes.setText(curr.getUpVotes() + "");
+        holder.downVotes.setText(curr.getDownVotes() + "");
 
         holder.itemView.setTag(curr);
 
@@ -102,13 +100,13 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         protected TextView userName;
         protected TextView actionTag;
         protected TextView profName;
-        protected  TextView course;
+        protected TextView course;
         protected TextView grade;
         protected TextView upVotes;
         protected TextView downVotes;
 
-        protected  Button upBtn;
-        protected Button downBtn;
+        protected ImageButton upBtn;
+        protected ImageButton downBtn;
 
         public PostHolder(View itemView) {
 
@@ -116,7 +114,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             userName = itemView.findViewById(R.id.userName);
             actionTag = itemView.findViewById(R.id.actionTag);
             profName = itemView.findViewById(R.id.profName);
-            course = itemView.findViewById(R.id.course);
+            course = itemView.findViewById(R.id.courseTaken);
             grade = itemView.findViewById(R.id.grade);
             upVotes = itemView.findViewById(R.id.upVotes);
             downVotes = itemView.findViewById(R.id.downVotes);
@@ -133,7 +131,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             container = itemView.findViewById(R.id.reviewContainer);
 
-            review = itemView.findViewById(R.id.review);
+            review = itemView.findViewById(R.id.reviewContent);
         }
     }
 
@@ -143,7 +141,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public RatingHolder(View itemView){
             super(itemView);
             container = itemView.findViewById(R.id.ratingContainer);
-            rating = itemView.findViewById(R.id.rating);
+            rating = itemView.findViewById(R.id.ratingBar);
         }
     }
 }

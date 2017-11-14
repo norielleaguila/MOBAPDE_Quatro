@@ -64,7 +64,9 @@ public class NavigationActivity extends AppCompatActivity {
 
         posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
         posts.add(new Review(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "OPERSYS", 3.0, 41, 8,
-                "Nawala ko notes ko sa class nya pero okay lang kasi kumpleto slides nya"));
+                "Nwala ko notes ko sa class nya pero ok lg kasi kumpleto slides"));
+        posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
+        posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
     }
 
 }

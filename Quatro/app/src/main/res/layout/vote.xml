@@ -8,6 +8,7 @@
 		android:layout_height="36dp"
 		android:src="@drawable/ic_up"
 		android:background="#0000"
+		android:tint="@color/colorPrimary"
 		android:id="@+id/upBtn"/>
 
 	<TextView
@@ -16,7 +17,7 @@
 		android:layout_height="wrap_content"
 		android:gravity="center"
 		android:text="12"
-		android:textSize="18sp"
+		android:textSize="@dimen/regular_text"
 		android:layout_centerHorizontal="true"
 		android:textColor="@color/colorGrey"
 		android:layout_below="@id/upBtn"/>
@@ -26,9 +27,9 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="18"
-		android:textSize="18sp"
+		android:textSize="@dimen/regular_text"
 		android:textColor="@color/colorGrey"
-		android:layout_marginTop="20dp"
+		android:layout_marginTop="16dp"
 		android:layout_centerHorizontal="true"
 		android:layout_below="@id/upVotes"/>
 
@@ -37,7 +38,9 @@
 		android:layout_height="36dp"
 		android:id="@+id/downBtn"
 		android:layout_below="@id/downVotes"
-		android:background="@drawable/ic_down"
+		android:src="@drawable/ic_down"
+		android:background="#0000"
+		android:tint="@color/colorPrimary"
 		/>
 
 </RelativeLayout>

@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Review stuffs goes here lol hehehehehehehe"
-        android:textSize="18sp"
+        android:textSize="@dimen/regular_text"
         android:textColor="#000"
         android:layout_marginStart="20dp"
         android:layout_marginRight="10dp"
