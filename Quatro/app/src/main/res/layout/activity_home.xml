@@ -6,14 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="edu.dlsu.mobapde.quatro.Home">
+    tools:context="edu.dlsu.mobapde.quatro.NavigationActivity">
 
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/white">
+        android:background="@color/colorBackground"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,9 +25,9 @@
 
             <View
                 android:layout_width= "0dp"
-                android:layout_height="1dp"
+                android:layout_height="3dp"
                 android:layout_weight="1"
-                android:background="@android:color/darker_gray"
+                android:background="@color/colorLightGrey"
                 android:layout_margin="10dp"/>
 
             <TextView
@@ -38,17 +39,27 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="Home Feed"
-                android:textColor="#767676"/>
+                android:textSize="18sp"
+                android:textColor="@color/colorGrey"/>
 
             <View
                 android:layout_width= "0dp"
-                android:layout_height="1dp"
+                android:layout_height="3dp"
                 android:layout_weight="1"
-                android:background="@android:color/darker_gray"
+                android:background="@color/colorLightGrey"
                 android:layout_margin="10dp"/>
         </LinearLayout>
 
+        <include
+            layout="@layout/search_bar">
+        </include>
 
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:id="@+id/homeFeed">
+            </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
