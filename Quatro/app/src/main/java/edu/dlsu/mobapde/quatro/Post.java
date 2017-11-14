@@ -5,18 +5,20 @@ package edu.dlsu.mobapde.quatro;
  */
 
 public abstract class Post {
-    private int userIcon;
-    private String userName;
-    private String action;
-    private String course;
-    private double grade;
-    private int upVotes;
-    private int downVotes;
+    protected int userIcon;
+    protected String userName;
+    protected String action;
+    protected String profName;
+    protected String course;
+    protected double grade;
+    protected int upVotes;
+    protected int downVotes;
 
-    public Post(int userIcon, String userName, String action, String course, double grade, int upVotes, int downVotes) {
+    public Post(int userIcon, String userName, String profName, String course, double grade, int upVotes, int downVotes) {
         this.userIcon = userIcon;
         this.userName = userName;
-        this.action = action;
+        this.action = "";
+        this.profName = profName;
         this.course = course;
         this.grade = grade;
         this.upVotes = upVotes;
@@ -77,5 +79,13 @@ public abstract class Post {
 
     public void setDownVotes(int downVotes) {
         this.downVotes = downVotes;
+    }
+
+    public String getProfName() {
+        return profName;
+    }
+
+    public void setProfName(String profName) {
+        this.profName = profName;
     }
 }
