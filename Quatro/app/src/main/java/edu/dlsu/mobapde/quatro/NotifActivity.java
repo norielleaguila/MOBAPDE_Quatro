@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ import android.widget.TextView;
 
 public class NotifActivity extends AppCompatActivity {
     private TextView mTextMessage;
+
+    RelativeLayout link;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +31,16 @@ public class NotifActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         mTextMessage.setText("Notifications");
 
+        link = (RelativeLayout) findViewById(R.id.notif_container);
+
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), PostActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
