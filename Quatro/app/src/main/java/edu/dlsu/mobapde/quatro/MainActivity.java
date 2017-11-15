@@ -9,10 +9,13 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     private Button login;
 
+    public static DatabaseHelper db = new DatabaseHelper();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         login = (Button)findViewById(R.id.fbLogin);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -23,5 +26,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        setContentView(R.layout.activity_account);
+
+        db.connectToDatabase();
+        db.readAllFaculty();
+        db.readAllStudents();
+        db.readAllReviews();
+    }
+
+    public static DatabaseHelper getDb() {
+        return db;
     }
 }

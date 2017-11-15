@@ -14,6 +14,8 @@ public class Prof {
     private float avgGrade;
     private int numReviews;
 
+    public Prof() {
+    }
     public Prof(String profName, String dept, float rating, float avgGrade, int numReviews) {
         this.profName = profName;
         this.dept = dept;

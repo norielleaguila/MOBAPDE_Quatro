@@ -54,7 +54,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 break;
             case 1:
                 ReviewHolder reviewHolder = (ReviewHolder) holder;
-                reviewHolder.review.setText(((Review) curr).getReview());
+                reviewHolder.review.setText(((PostReview) curr).getReview());
 
                 setItems(reviewHolder, curr);
 

@@ -26,6 +26,8 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />
         <activity android:name=".ProfListActivity"></activity>
+        <activity android:name=".ProfPageActivity"></activity>
+        <activity android:name=".ProfFeedActivity"></activity>
     </application>
 
 </manifest>
