@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="edu.dlsu.mobapde.quatro.HomeActivity">
+    tools:context="edu.dlsu.mobapde.quatro.ProfListActivity">
 
     <LinearLayout
         android:id="@+id/content"
@@ -16,7 +16,16 @@
         android:background="@color/colorBackground"
         android:orientation="vertical">
 
-        <include layout="@layout/message_holder"></include>
+
+        <Spinner
+            android:id="@+id/filterProfs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:popupBackground="@color/colorPrimaryDark"
+            />
 
         <include
             layout="@layout/search_bar">
@@ -26,8 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/activity_vertical_margin"
-            android:id="@+id/homeFeed">
-            </android.support.v7.widget.RecyclerView>
+            android:id="@+id/profListFeed">
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
