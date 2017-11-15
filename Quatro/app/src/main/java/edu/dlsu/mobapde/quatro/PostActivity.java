@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Asus on 11/15/2017.
  */
@@ -16,6 +18,9 @@ import android.widget.TextView;
 public class PostActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    private TextView name;
+    private TextView course;
+    private TextView grade;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,8 +30,19 @@ public class PostActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         mTextMessage.setText("Your Posts");
 
+        name = (TextView) findViewById(R.id.userName);
+        name.setText("You");
+
+        course = (TextView) findViewById(R.id.courseTaken);
+        course.setText("OPERSYS");
+
+        grade = (TextView) findViewById(R.id.grade);
+        grade.setText("2.5");
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
 
     }
 

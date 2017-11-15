@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 public class NotifActivity extends AppCompatActivity {
     private TextView mTextMessage;
-    private Switch pushNotifSwitch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,21 +27,6 @@ public class NotifActivity extends AppCompatActivity {
 
         mTextMessage = (TextView) findViewById(R.id.message);
         mTextMessage.setText("Notifications");
-
-        pushNotifSwitch = (Switch) findViewById(R.id.notifSwitch);
-
-        pushNotifSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(pushNotifSwitch.isChecked()){
-                    pushNotifSwitch.setChecked(false);
-                }
-                else{
-                    pushNotifSwitch.setChecked(true);
-                }
-
-            }
-        });
 
     }
 
