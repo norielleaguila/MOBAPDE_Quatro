@@ -10,10 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class NavigationActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -47,7 +46,7 @@ public class NavigationActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
-                    Intent i = new Intent(getBaseContext(),NavigationActivity.class);
+                    Intent i = new Intent(getBaseContext(),HomeActivity.class);
                     startActivity(i);
                     finish();
                     break;
