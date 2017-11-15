@@ -35,7 +35,7 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent();
-                i.putExtra("course",course.getText());
+                i.putExtra("passed",course.getText());
                 i.setClass(getBaseContext(),EditAccountActivity.class);
 
                 startActivityForResult(i,0);
@@ -46,7 +46,7 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent();
-                i.putExtra("college",college.getText());
+                i.putExtra("passed",college.getText());
                 i.setClass(getBaseContext(),EditAccountActivity.class);
 
                 startActivityForResult(i,1);

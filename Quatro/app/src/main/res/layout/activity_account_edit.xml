@@ -23,6 +23,7 @@
         android:textColor="@color/black"
         android:backgroundTint="@color/colorGrey"
         android:inputType="text"
+        android:textColorHint="@color/colorLightGrey"
         />
 
 

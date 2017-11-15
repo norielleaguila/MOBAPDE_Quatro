@@ -29,8 +29,7 @@ public class EditAccountActivity extends AppCompatActivity {
 
         et = (EditText) findViewById(R.id.account_edit);
         final String passedData = getIntent().getExtras().getString("passed");
-        if (passedData!="college" || passedData!="course")
-            et.setText(passedData);
+        et.setText(passedData);
         submitButton = (Button)findViewById(R.id.submit_button);
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
