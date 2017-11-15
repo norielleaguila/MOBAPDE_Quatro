@@ -18,6 +18,7 @@ import android.widget.TextView;
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    private TextView userName;
     private Button btnAccount, btnNotif, btnSettings, btnPosts;
 
 
@@ -29,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mTextMessage = (TextView) findViewById(R.id.message);
+        userName = (TextView) findViewById(R.id.profileName);
+        userName.setText("Janella Co");
         btnAccount = (Button)findViewById(R.id.button_account);
         btnNotif = (Button)findViewById(R.id.button_notifs);
         btnSettings = (Button)findViewById(R.id.button_settings);
