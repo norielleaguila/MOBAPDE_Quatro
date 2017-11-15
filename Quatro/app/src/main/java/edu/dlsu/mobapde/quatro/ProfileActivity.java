@@ -94,14 +94,17 @@ public class ProfileActivity extends AppCompatActivity {
                     Intent i = new Intent(getBaseContext(),HomeActivity.class);
                     startActivity(i);
                     finish();
-                    break;
+                    return true;
                 case R.id.navigation_prof_list:
-                    break;
+                    Intent i3 = new Intent(getBaseContext(), ProfListActivity.class);
+                    startActivity(i3);
+                    finish();
+                    return true;
                 case R.id.navigation_me:
                     Intent i2 = new Intent(getBaseContext(),ProfileActivity.class);
                     startActivity(i2);
                     finish();
-                    break;
+                    return true;
             }
             return false;
         }

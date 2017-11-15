@@ -15,7 +15,7 @@ import android.widget.TextView;
  */
 
 public class AccountActivity extends AppCompatActivity {
-
+    private TextView mTextMessage;
     private TextView course,college;
 
     @Override
@@ -27,6 +27,9 @@ public class AccountActivity extends AppCompatActivity {
 
         course = (TextView)findViewById(R.id.tv_course);
         college = (TextView)findViewById(R.id.tv_college);
+        mTextMessage = (TextView) findViewById(R.id.message);
+
+        mTextMessage.setText("Notifications");
 
         course.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -71,14 +74,17 @@ public class AccountActivity extends AppCompatActivity {
                     Intent i = new Intent(getBaseContext(),HomeActivity.class);
                     startActivity(i);
                     finish();
-                    break;
+                    return true;
                 case R.id.navigation_prof_list:
-                    break;
+                    Intent i3 = new Intent(getBaseContext(), ProfListActivity.class);
+                    startActivity(i3);
+                    finish();
+                    return true;
                 case R.id.navigation_me:
                     Intent i2 = new Intent(getBaseContext(),ProfileActivity.class);
                     startActivity(i2);
                     finish();
-                    break;
+                    return true;
             }
             return false;
         }

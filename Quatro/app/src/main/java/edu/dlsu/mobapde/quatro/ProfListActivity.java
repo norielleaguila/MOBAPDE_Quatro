@@ -23,8 +23,6 @@ public class ProfListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prof_list);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -52,17 +50,14 @@ public class ProfListActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
                     Intent i = new Intent(getBaseContext(),HomeActivity.class);
                     startActivity(i);
                     finish();
                     return true;
                 case R.id.navigation_prof_list:
-                    mTextMessage.setText(R.string.title_prof_list);
 
                     return true;
                 case R.id.navigation_me:
-                    mTextMessage.setText(R.string.title_me);
                     Intent i2 = new Intent(getBaseContext(),ProfileActivity.class);
                     startActivity(i2);
                     finish();

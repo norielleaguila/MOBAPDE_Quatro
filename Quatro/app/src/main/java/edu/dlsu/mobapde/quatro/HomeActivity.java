@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mTextMessage = (TextView) findViewById(R.id.message);
+        mTextMessage.setText(R.string.title_home);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -48,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_prof_list:
-                    mTextMessage.setText(R.string.title_prof_list);
+//                    mTextMessage.setText(R.string.title_prof_list);
 
                     Intent i = new Intent(getBaseContext(), ProfListActivity.class);
                     startActivity(i);
@@ -56,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_me:
-                    mTextMessage.setText(R.string.title_me);
+//                    mTextMessage.setText(R.string.title_me);
                     Intent i2 = new Intent(getBaseContext(),ProfileActivity.class);
                     startActivity(i2);
                     finish();
@@ -70,11 +71,12 @@ public class HomeActivity extends AppCompatActivity {
     private void initList(){
         posts = new ArrayList<>();
 
-        posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
-        posts.add(new Review(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "OPERSYS", 3.0, 41, 8,
+        posts.add(new Rating(R.drawable.ic_profileicon, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
+        posts.add(new Review(R.drawable.ic_profileicon, "Jasper Pillejera", "Remedios de Dios Bulos", "OPERSYS", 3.0, 41, 8,
                 "Nwala ko notes ko sa class nya pero ok lg kasi kumpleto slides"));
-        posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
-        posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
+        posts.add(new Rating(R.drawable.ic_profileicon, "Jasper Pillejera", "Roger Uy", "ARCHORG", 4.0, 63, 7, 5.0f));
+        posts.add(new Review(R.drawable.ic_profileicon, "Jasper Pillejera", "Roger Uy", "ARCHORG", 4.0, 28, 12,
+                "EZ"));
     }
 
 }
