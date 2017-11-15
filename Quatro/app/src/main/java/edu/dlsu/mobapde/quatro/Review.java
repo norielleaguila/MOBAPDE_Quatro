@@ -3,19 +3,7 @@ package edu.dlsu.mobapde.quatro;
 /**
  * Created by Norielle on 11/14/2017.
  */
-
-public class Review extends Post {
-
-    private String review;
-
-    public Review(int userIcon, String userName, String profName, String course, double grade, int upVotes, int downVotes, String review) {
-        super(userIcon, userName, profName, course, grade, upVotes, downVotes);
-        this.review = review;
-        this.action = "Reviewed";
- * Created by Janella on 14/11/2017.
- */
-
-public class Review {
+public class Review{
 
     private int review_id;
     private int student_id;
@@ -80,7 +68,6 @@ public class Review {
     public void setReview(String review) {
         this.review = review;
     }
-}
 
     public int getUpvotes() {
         return upvotes;

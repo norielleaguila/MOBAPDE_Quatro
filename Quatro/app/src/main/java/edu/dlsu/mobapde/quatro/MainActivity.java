@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         login = (Button)findViewById(R.id.fbLogin);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,16 +26,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_account);
+//        setContentView(R.layout.activity_account);
 
         db.connectToDatabase();
         db.readAllFaculty();
         db.readAllStudents();
         db.readAllReviews();
-
-        Intent i = new Intent(getBaseContext(), HomeActivity.class);
-        startActivity(i);
-        finish();
     }
 
     public static DatabaseHelper getDb() {

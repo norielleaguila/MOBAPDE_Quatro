@@ -71,13 +71,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initList(){
         posts = new ArrayList<>();
-
-        posts.add(new Rating(R.drawable.ic_profileicon, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
-        posts.add(new Review(R.drawable.ic_profileicon, "Jasper Pillejera", "Remedios de Dios Bulos", "OPERSYS", 3.0, 41, 8,
-                "Nwala ko notes ko sa class nya pero ok lg kasi kumpleto slides"));
-        posts.add(new Rating(R.drawable.ic_profileicon, "Jasper Pillejera", "Roger Uy", "ARCHORG", 4.0, 63, 7, 5.0f));
-        posts.add(new Review(R.drawable.ic_profileicon, "Jasper Pillejera", "Roger Uy", "ARCHORG", 4.0, 28, 12,
-                "EZ"));
+//
+//        posts.add(new Rating(R.drawable.ic_profileicon, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
+//        posts.add(new Review(R.drawable.ic_profileicon, "Jasper Pillejera", "Remedios de Dios Bulos", "OPERSYS", 3.0, 41, 8,
+//                "Nwala ko notes ko sa class nya pero ok lg kasi kumpleto slides"));
+//        posts.add(new Rating(R.drawable.ic_profileicon, "Jasper Pillejera", "Roger Uy", "ARCHORG", 4.0, 63, 7, 5.0f));
+//        posts.add(new Review(R.drawable.ic_profileicon, "Jasper Pillejera", "Roger Uy", "ARCHORG", 4.0, 28, 12,
+//                "EZ"));
         reviewsList = new ArrayList<Review>();
 
         DatabaseHelper db = MainActivity.getDb();
@@ -101,7 +101,6 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
->>>>>>> origin/nella
     }
 
 }
