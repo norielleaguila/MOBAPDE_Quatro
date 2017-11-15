@@ -1,5 +1,6 @@
 package edu.dlsu.mobapde.quatro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -46,13 +47,19 @@ public class NavigationActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
-                    return true;
+                    Intent i = new Intent(getBaseContext(),NavigationActivity.class);
+                    startActivity(i);
+                    finish();
+                    break;
                 case R.id.navigation_prof_list:
                     mTextMessage.setText(R.string.title_prof_list);
-                    return true;
+                    break;
                 case R.id.navigation_me:
                     mTextMessage.setText(R.string.title_me);
-                    return true;
+                    Intent i2 = new Intent(getBaseContext(),ProfileActivity.class);
+                    startActivity(i2);
+                    finish();
+                    break;
             }
             return false;
         }
