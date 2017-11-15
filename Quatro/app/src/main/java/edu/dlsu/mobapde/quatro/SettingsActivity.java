@@ -30,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent i = new Intent(getBaseContext(),NavigationActivity.class);
+                    Intent i = new Intent(getBaseContext(),HomeActivity.class);
                     startActivity(i);
                     finish();
                     break;
