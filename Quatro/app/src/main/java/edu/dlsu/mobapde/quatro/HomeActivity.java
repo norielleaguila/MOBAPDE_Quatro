@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView rv;
     private ArrayList<Post> posts;
 
+    private ArrayList<Review> reviewsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,30 @@ public class HomeActivity extends AppCompatActivity {
         posts.add(new Rating(R.drawable.ic_profileicon, "Jasper Pillejera", "Roger Uy", "ARCHORG", 4.0, 63, 7, 5.0f));
         posts.add(new Review(R.drawable.ic_profileicon, "Jasper Pillejera", "Roger Uy", "ARCHORG", 4.0, 28, 12,
                 "EZ"));
+        reviewsList = new ArrayList<Review>();
+
+        DatabaseHelper db = MainActivity.getDb();
+        reviewsList = db.getAllReviews();
+        ArrayList<Student> userList = db.getAllStudents();
+        ArrayList<Faculty> facultyList  = db.getAllFaculty();
+        db.printAllReviews();
+
+//        posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
+//        posts.add(new PostReview(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "OPERSYS", 3.0, 41, 8,
+//                "Nwala ko notes ko sa class nya pero ok lg kasi kumpleto slides"));
+//        posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
+//        posts.add(new Rating(R.mipmap.ic_launcher, "Jasper Pillejera", "Remedios de Dios Bulos", "ST-STAT", 3.0, 53, 2, 3.0f));
+
+        for(int i = 0; i < reviewsList.size(); i++){
+            Student student = userList.get(reviewsList.get(i).getStudent_id());
+            Faculty faculty = facultyList.get(reviewsList.get(i).getFaculty_id());
+            posts.add(new Rating(R.mipmap.ic_launcher, student.getFirst_name()+ " " + student.getLast_name(), faculty.getFirst_name() + " " + faculty.getLast_name(), reviewsList.get(i).getSubject(), reviewsList.get(i).getGrade(), reviewsList.get(i).getUpvotes(), reviewsList.get(i).getDownvotes(), reviewsList.get(i).getRating()));
+
+            posts.add(new PostReview(R.mipmap.ic_launcher, student.getFirst_name()+ " " + student.getLast_name(), faculty.getFirst_name() + " " + faculty.getLast_name(), reviewsList.get(i).getSubject(), reviewsList.get(i).getGrade(), reviewsList.get(i).getUpvotes(), reviewsList.get(i).getDownvotes(), reviewsList.get(i).getReview()));
+
+        }
+
+>>>>>>> origin/nella
     }
 
 }

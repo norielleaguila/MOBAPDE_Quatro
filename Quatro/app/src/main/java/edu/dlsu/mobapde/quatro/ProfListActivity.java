@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import android.widget.TextView;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ProfListActivity extends AppCompatActivity {
@@ -23,11 +25,13 @@ public class ProfListActivity extends AppCompatActivity {
 
     TextView rateBtn;
     TextView reviewBtn;
+    ArrayList<Faculty> facultyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prof_list);
+        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -88,6 +92,7 @@ public class ProfListActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    mTextMessage.setText(R.string.title_home);
                     Intent i = new Intent(getBaseContext(),HomeActivity.class);
                     startActivity(i);
                     finish();
@@ -112,6 +117,15 @@ public class ProfListActivity extends AppCompatActivity {
         profList.add(new Prof("Jordan Deja", "ST", 4.5f, 3.0f, 41));
         profList.add(new Prof("Solomon Sy", "ST", 3.0f, 2.0f, 36));
         profList.add(new Prof("Roger Uy", "ST", 5.0f, 2.5f, 62));
+        DatabaseHelper db = MainActivity.getDb();
+        facultyList = db.getAllFaculty();
+
+        for(int i = 179; i < 184; i++){
+            Prof tempProf = new Prof(facultyList.get(i).getFirst_name() + " " + facultyList.get(i).getLast_name(),facultyList.get(i).getDepartment(), 4.0f, 4.0f, 21);
+
+            profList.add(tempProf);
+        }
+
 
     }
 }

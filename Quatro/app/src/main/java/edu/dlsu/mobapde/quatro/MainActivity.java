@@ -9,6 +9,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     private Button login;
 
+    public static DatabaseHelper db = new DatabaseHelper();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +25,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        setContentView(R.layout.activity_account);
+
+        db.connectToDatabase();
+        db.readAllFaculty();
+        db.readAllStudents();
+        db.readAllReviews();
+
+        Intent i = new Intent(getBaseContext(), HomeActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    public static DatabaseHelper getDb() {
+        return db;
     }
 }
