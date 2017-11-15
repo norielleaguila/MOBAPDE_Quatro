@@ -10,21 +10,30 @@
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="30dp"
+    >
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:id="@+id/account_edit"
-        android:inputType="text"/>
+        android:textColor="@color/black"
+        android:backgroundTint="@color/colorGrey"
+        android:inputType="text"
+        />
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:id="@+id/submit_button"/>
+        android:id="@+id/submit_button"
+        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTintMode="src_atop"
+        />
 </LinearLayout>
     <include
         layout="@layout/navigation">
