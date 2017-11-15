@@ -42,7 +42,9 @@ public class NotifActivity extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.navigation_prof_list:
-
+                    Intent i3 = new Intent(getBaseContext(), ProfListActivity.class);
+                    startActivity(i3);
+                    finish();
                     return true;
                 case R.id.navigation_me:
                     Intent i2 = new Intent(getBaseContext(),ProfileActivity.class);

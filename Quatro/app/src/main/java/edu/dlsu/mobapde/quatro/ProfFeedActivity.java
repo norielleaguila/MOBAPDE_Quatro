@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Norielle on 11/15/2017.
  */
@@ -19,6 +21,7 @@ public class ProfFeedActivity extends AppCompatActivity {
     private TextView name;
     private TextView course;
     private TextView grade;
+    private TextView prof;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +32,10 @@ public class ProfFeedActivity extends AppCompatActivity {
         mTextMessage.setText("Prof Feed");
 
         name = (TextView) findViewById(R.id.userName);
-        name.setText("You");
+        name.setText("Jasper Pillejera");
+
+        prof = (TextView) findViewById(R.id.profName);
+        prof.setText("Jordan Deja");
 
         course = (TextView) findViewById(R.id.courseTaken);
         course.setText("OPERSYS");
