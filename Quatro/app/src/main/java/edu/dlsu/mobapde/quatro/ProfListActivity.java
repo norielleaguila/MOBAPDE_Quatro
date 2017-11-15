@@ -1,5 +1,6 @@
 package edu.dlsu.mobapde.quatro;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +20,9 @@ public class ProfListActivity extends AppCompatActivity {
 
     RecyclerView rv;
     ArrayList<Prof> profList;
+
+    TextView rateBtn;
+    TextView reviewBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +39,41 @@ public class ProfListActivity extends AppCompatActivity {
 
         pa.setmOnItemClickListener(new ProfListAdapter.OnItemClickListener(){
             @Override
-            public void onItemClick(Prof prof){
-                // TODO: intent to go to prof page
+            public void onItemClick(int which, Prof prof){
+
+                switch(which){
+                    case 0:
+                        RateDialog rateDialog = new RateDialog();
+
+                        rateDialog.setOnUserApprovesListener(new RateDialog.OnUserApprovesListener() {
+                            @Override
+                            public void onUserApproves(DialogInterface dialog, int which, String course, String grade, float rating) {
+                                // TODO create post to add to db
+                            }
+                        });
+
+                        TextView title = (TextView) findViewById(R.id.rate_title);
+                        title.setText("Rate " + prof.getProfName());
+                        break;
+                    case 1:
+                        ReviewDialog reviewDialog = new ReviewDialog();
+
+                        reviewDialog.setOnUserApprovesListener(new ReviewDialog.OnUserApprovesListener() {
+                            @Override
+                            public void onUserApproves(DialogInterface dialog, int which, String course, String grade, String review) {
+                                // TODO create post to add to db
+                            }
+                        });
+
+                        TextView title2 = (TextView) findViewById(R.id.review_title);
+                        title2.setText("Review " + prof.getProfName());
+                        break;
+                    case 2:
+                        Intent i = new Intent(getBaseContext(), ProfPageActivity.class);
+                        startActivity(i);
+                        finish();
+                        break;
+                }
             }
         });
 

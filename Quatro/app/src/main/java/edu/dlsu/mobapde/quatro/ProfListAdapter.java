@@ -40,11 +40,29 @@ public class ProfListAdapter extends RecyclerView.Adapter<ProfListAdapter.ProfHo
 
         holder.itemView.setTag(curr);
 
-        holder.card_numReviews.setOnClickListener(new View.OnClickListener() {
+        holder.rateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(mOnItemClickListener != null){
-                    mOnItemClickListener.onItemClick(curr);
+                    mOnItemClickListener.onItemClick(0, curr);
+                }
+            }
+        });
+
+        holder.reviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mOnItemClickListener != null){
+                    mOnItemClickListener.onItemClick(1, curr);
+                }
+            }
+        });
+
+        holder.card_profIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mOnItemClickListener != null){
+                    mOnItemClickListener.onItemClick(2, curr);
                 }
             }
         });
@@ -93,7 +111,7 @@ public class ProfListAdapter extends RecyclerView.Adapter<ProfListAdapter.ProfHo
     }
 
     public interface OnItemClickListener{
-        public void onItemClick(Prof prof);
+        public void onItemClick(int which, Prof prof);
     }
 
 }
