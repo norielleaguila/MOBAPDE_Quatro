@@ -23,10 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/colorPrimary"
-
             android:padding="10dp"
             android:popupBackground="@color/colorPrimaryDark"
-            android:textcolor="@color/colorAccent" />
+            />
 
         <include
             layout="@layout/search_bar">
