@@ -39,13 +39,49 @@ public class ProfileActivity extends AppCompatActivity {
                 Intent i = new Intent();        // Intent = opening new Activity
 
                 i.putExtra("passed", btnAccount.getText());
-                i.setClass(getBaseContext(), SecondActivity.class);
+                i.setClass(getBaseContext(), AccountActivity.class);
 
-                startActivityForResult(i, 1);
+                startActivity(i);
             }
         });
-    }
 
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();        // Intent = opening new Activity
+
+                i.putExtra("passed", btnSettings.getText());
+                i.setClass(getBaseContext(), SettingsActivity.class);
+
+                startActivity(i);
+            }
+        });
+
+        btnNotif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();        // Intent = opening new Activity
+
+                i.putExtra("passed", btnNotif.getText());
+                i.setClass(getBaseContext(), NotifActivity.class);
+
+                startActivity(i);
+            }
+        });
+
+        btnPosts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();        // Intent = opening new Activity
+
+                i.putExtra("passed", btnPosts.getText());
+                i.setClass(getBaseContext(), PostActivity.class);
+
+                startActivity(i);
+            }
+        });
+
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
