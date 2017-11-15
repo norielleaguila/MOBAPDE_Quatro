@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
@@ -48,6 +47,10 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
+                    Intent i = new Intent(getBaseContext(),HomeActivity.class);
+                    startActivity(i);
+                    finish();
+                    break;
                 case R.id.navigation_prof_list:
                     mTextMessage.setText(R.string.title_prof_list);
 
@@ -59,6 +62,10 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.navigation_me:
                     mTextMessage.setText(R.string.title_me);
                     return true;
+                    Intent i2 = new Intent(getBaseContext(),ProfileActivity.class);
+                    startActivity(i2);
+                    finish();
+                    break;
             }
             return false;
         }
