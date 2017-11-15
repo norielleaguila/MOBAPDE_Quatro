@@ -9,11 +9,12 @@ public class Review {
     private int review_id;
     private int student_id;
     private int faculty_id;
-    private int rating;
+    private float rating;
     private String review;
     private int upvotes;
     private int downvotes;
     private double grade;
+    private String subject;
 
     public Review() {
 
@@ -53,7 +54,7 @@ public class Review {
         this.faculty_id = faculty_id;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
@@ -91,6 +92,33 @@ public class Review {
 
     public void setGrade(double grade) {
         this.grade = grade;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "review_id=" + review_id +
+                ", student_id=" + student_id +
+                ", faculty_id=" + faculty_id +
+                ", rating=" + rating +
+                ", review='" + review + '\'' +
+                ", upvotes=" + upvotes +
+                ", downvotes=" + downvotes +
+                ", grade=" + grade +
+                ", subject='" + subject + '\'' +
+                '}';
     }
 }
 

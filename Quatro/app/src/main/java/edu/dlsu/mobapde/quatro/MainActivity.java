@@ -1,30 +1,29 @@
 package edu.dlsu.mobapde.quatro;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Map;
+import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DatabaseHelper dbHelper = new DatabaseHelper();
+    public static DatabaseHelper db = new DatabaseHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_account);
 
-        dbHelper.connectToDatabase();
+        db.connectToDatabase();
+        db.readAllFaculty();
+        db.readAllStudents();
+        db.readAllReviews();
 
-        dbHelper.readAllStudents();
+        Intent i = new Intent(getBaseContext(), HomeActivity.class);
+        startActivity(i);
+        finish();
     }
 
-
+    public static DatabaseHelper getDb() {
+        return db;
+    }
 }

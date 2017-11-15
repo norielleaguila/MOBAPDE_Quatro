@@ -4,22 +4,23 @@ package edu.dlsu.mobapde.quatro;
  * Created by Janella on 14/11/2017.
  */
 
-public class Teacher {
+public class Faculty {
 
     private int faculty_id;
     private String first_name;
-    private String lastname;
+    private String last_name;
     private String college;
+    private String title;
     private String department;
 
-    public Teacher() {
+    public Faculty() {
 
     }
 
-    public Teacher(String first_name, String lastname, String college, String department) {
+    public Faculty(String first_name, String last_name, String title, String department) {
         this.first_name = first_name;
-        this.lastname = lastname;
-        this.college = college;
+        this.last_name = last_name;
+        this.title = title;
         this.department = department;
     }
 
@@ -39,12 +40,12 @@ public class Teacher {
         this.first_name = first_name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getCollege() {
@@ -55,12 +56,31 @@ public class Teacher {
         this.college = college;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDepartment() {
         return department;
     }
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "faculty_id=" + faculty_id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", title='" + title + '\'' +
+                ", department='" + department + '\'' +
+                '}';
     }
 }
 
