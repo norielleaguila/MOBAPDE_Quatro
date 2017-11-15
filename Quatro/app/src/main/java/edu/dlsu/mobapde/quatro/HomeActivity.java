@@ -1,5 +1,6 @@
 package edu.dlsu.mobapde.quatro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class NavigationActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -49,6 +50,11 @@ public class NavigationActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_prof_list:
                     mTextMessage.setText(R.string.title_prof_list);
+
+                    Intent i = new Intent(getBaseContext(), ProfListActivity.class);
+                    startActivity(i);
+                    finish();
+
                     return true;
                 case R.id.navigation_me:
                     mTextMessage.setText(R.string.title_me);
