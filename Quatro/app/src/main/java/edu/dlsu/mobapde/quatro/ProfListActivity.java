@@ -83,7 +83,7 @@ public class ProfListActivity extends AppCompatActivity {
 
                         reviewDialog.setOnUserApprovesListener(new ReviewDialog.OnUserApprovesListener() {
                             @Override
-                            public void onUserApproves(DialogInterface dialog, int which, String course, String grade, String review) {
+                            public void onUserApproves(String course, String grade, double rating, String review) {
 
                                 DatabaseHelper db  = MainActivity.getDb();
 
@@ -91,6 +91,8 @@ public class ProfListActivity extends AppCompatActivity {
                                 temp.setCourse(course);
                                 temp.setGrade(Double.parseDouble(grade));
                                 temp.setReview(review);
+                                temp.setRating(rating);
+                                temp.setRated(true);
 
                                 temp.setProf_name(prof.getLast_name() + ", " + prof.getFirst_name());
                                 temp.setProf_id(prof.getProf_id());

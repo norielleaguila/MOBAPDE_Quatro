@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
-    FirebaseRecyclerAdapter<Post, PostViewHolder> postPostViewHolderFirebaseRecyclerAdapter;
-
     DatabaseReference databaseReference;
 
     private TextView mTextMessage;
