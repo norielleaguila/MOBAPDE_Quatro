@@ -204,23 +204,23 @@ public class DatabaseHelper {
     private void getProfs(Map<String, Object> profs){
 //        for (Map.Entry<String, Object> entry : profs.entrySet()) {
 
-            Prof tempProf = new Prof();
+        Prof tempProf = new Prof();
 //            Map prof = (Map) entry.getValue();
 
-            tempProf.setFirst_name(String.valueOf(profs.get("first_name")));
-            tempProf.setLast_name(String.valueOf(profs.get("last_name")));
-            tempProf.setDepartment(String.valueOf(profs.get("department")));
-            tempProf.setTitle(String.valueOf(profs.get("title")));
-            tempProf.setProf_id(allProfs.size());
+        tempProf.setFirst_name(String.valueOf(profs.get("first_name")));
+        tempProf.setLast_name(String.valueOf(profs.get("last_name")));
+        tempProf.setDepartment(String.valueOf(profs.get("department")));
+        tempProf.setTitle(String.valueOf(profs.get("title")));
+        tempProf.setProf_id(allProfs.size());
 
-            Log.w(TAG, profs.toString());
+        Log.w(TAG, profs.toString());
 
 //        for(int i = 0; i < tempCourses.length; i++){
 //            tempProf.addCourse(allCourses.get(tempCourses[i]));
 //        }
 
-            Prof.total_profs++;
-            allProfs.add(tempProf);
+        Prof.total_profs++;
+        allProfs.add(tempProf);
 //        }
 
     }
@@ -306,6 +306,22 @@ public class DatabaseHelper {
         }
 
         return ProfList;
+    }
+
+    public ArrayList<Prof> searchProfByCourseCode(String course_code){
+        ArrayList<Prof> profList = new ArrayList<Prof>();
+
+        Log.w(TAG, "searching");
+
+        for(int i = 0; i < allProfs.size(); i++){
+            ArrayList<Course> profsCourses = allProfs.get(i).getCourses();
+            for(int j = 0; j < profsCourses.size(); j++){
+                if(profsCourses.get(j).equals(course_code))
+                    profList.add(allProfs.get(i));
+            }
+        }
+
+        return profList;
     }
 
     public Prof searchProfByName(String name){
@@ -398,5 +414,9 @@ public class DatabaseHelper {
         for (int i = 0; i < allCourses.size(); i++){
             Log.i(TAG, allCourses.get(i).toString());;
         }
+    }
+
+    public DatabaseReference getDbRefPosts() {
+        return dbRefPosts;
     }
 }
