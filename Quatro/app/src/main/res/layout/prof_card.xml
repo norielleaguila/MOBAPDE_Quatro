@@ -16,7 +16,7 @@
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/card_profIcon"
         android:background="@drawable/rectangle"
-        android:text="Rate"
+        android:text="View"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="15dp"
