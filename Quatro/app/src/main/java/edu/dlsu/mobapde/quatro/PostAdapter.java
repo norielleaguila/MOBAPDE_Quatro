@@ -28,7 +28,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     }
 
     @Override
-    public void onBindViewHolder(PostHolder holder, int position) {
+    public void onBindViewHolder(final PostHolder holder, final int position) {
         Post curr = posts.get(position);
         holder.userName.setText(curr.getUser_name());
         holder.profName.setText(curr.getProf_name());
@@ -44,9 +44,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         holder.upBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Post p = (Post) view.getTag();
+                Post p = posts.get(position);
                 p.setUpvotes(p.getUpvotes() + 1);
-
+                holder.upVotes
+                        .setText(p.getUpvotes());
             }
         });
 

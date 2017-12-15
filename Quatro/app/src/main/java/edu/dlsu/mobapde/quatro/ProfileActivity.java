@@ -30,7 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mTextMessage = (TextView) findViewById(R.id.message);
-        userName = (TextView) findViewById(R.id.userName);
+        userName = (TextView) findViewById(R.id.user_name);
         userName.setText("Janella Co");
         btnSettings = (Button)findViewById(R.id.button_settings);
 

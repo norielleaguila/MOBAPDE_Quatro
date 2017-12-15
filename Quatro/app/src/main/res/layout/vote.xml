@@ -8,7 +8,7 @@
 		android:layout_height="36dp"
 		android:src="@drawable/ic_up"
 		android:background="#0000"
-		android:tint="@color/colorPrimaryDark"
+		android:tint="@color/colorAccent"
 		android:id="@+id/upBtn"/>
 
 	<TextView
@@ -40,7 +40,7 @@
 		android:layout_below="@id/downVotes"
 		android:src="@drawable/ic_down"
 		android:background="#0000"
-		android:tint="@color/colorPrimaryDark"
+		android:tint="@color/colorAccent"
 		/>
 
 </RelativeLayout>
