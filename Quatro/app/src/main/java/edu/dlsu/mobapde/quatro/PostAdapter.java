@@ -16,14 +16,14 @@ import java.util.ArrayList;
  * Created by Norielle on 11/14/2017.
  */
 
-        public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     private ArrayList<Post> posts;
 
     public PostAdapter(ArrayList<Post> posts){this.posts = posts;}
 
     @Override
     public PostHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_rating, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_rating, parent, false);
         return new PostHolder(v);
     }
 
@@ -37,6 +37,8 @@ import java.util.ArrayList;
         holder.upVotes.setText(curr.getUpvotes() + "");
         holder.downVotes.setText(curr.getDownvotes() + "");
 
+        holder.rtRating.setRating((float)curr.getRating());
+        holder.tvReview.setText(curr.getReview());
         holder.itemView.setTag(curr);
 
         holder.upBtn.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +62,7 @@ import java.util.ArrayList;
 
     public void setItems(PostHolder holder, Post curr){
         holder.userName.setText(curr.getUser_name());
-//        holder.actionTag.setText(curr.getAc());
+//        holder.actionTag.setText(curr.ge());
         holder.profName.setText(curr.getProf_name());
         holder.course.setText(curr.getCourse());
         holder.grade.setText(curr.getGrade() + "");
@@ -104,6 +106,9 @@ import java.util.ArrayList;
         protected ImageButton upBtn;
         protected ImageButton downBtn;
 
+        protected RatingBar rtRating;
+        protected TextView tvReview;
+
         public PostHolder(View itemView) {
 
             super(itemView);
@@ -116,6 +121,9 @@ import java.util.ArrayList;
             downVotes = itemView.findViewById(R.id.downVotes);
             upBtn = itemView.findViewById(R.id.upBtn);
             downBtn = itemView.findViewById(R.id.downBtn);
+
+            rtRating = itemView.findViewById(R.id.ratingBar);
+            tvReview = itemView.findViewById(R.id.reviewContent);
         }
     }
 }
