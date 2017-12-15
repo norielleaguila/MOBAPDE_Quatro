@@ -202,4 +202,12 @@ public class Prof {
                 ", courses=" + courses +
                 '}';
     }
+
+    public void addCourse(Course course){
+        if(course == null)
+            courses = new ArrayList<Course>();
+        else{
+            courses.add(course);
+        }
+    }
 }

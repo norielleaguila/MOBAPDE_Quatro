@@ -5,16 +5,22 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Norielle on 11/15/2017.
  */
 
 public class RateDialog extends DialogFragment {
+
+    final static String TAG = "RateDialog";
 
     View view;
 

@@ -45,6 +45,7 @@ import java.util.ArrayList;
             public void onClick(View view) {
                 Post p = (Post) view.getTag();
                 p.setUpvotes(p.getUpvotes() + 1);
+
             }
         });
 

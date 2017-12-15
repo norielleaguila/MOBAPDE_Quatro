@@ -70,12 +70,9 @@ public class HomeActivity extends AppCompatActivity {
     };
 
     private void initList() {
-
         DatabaseHelper db = MainActivity.getDb();
+
         postsList = db.getAllPosts();
-        ArrayList<Student> userList = db.getAllStudents();
-        ArrayList<Prof> facultyList = db.getallProfs();
-        db.printAllData();
 
     }
 }
