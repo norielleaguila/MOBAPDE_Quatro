@@ -112,16 +112,16 @@
             android:paddingBottom="10dp"
             />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View all related posts"
-            android:layout_gravity="bottom"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:backgroundTintMode="src_over"
-            android:id="@+id/viewPostsBtn"
-            />
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="View all related posts"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:layout_margin="16dp"-->
+            <!--android:backgroundTint="@color/colorPrimaryDark"-->
+            <!--android:backgroundTintMode="src_over"-->
+            <!--android:id="@+id/viewPostsBtn"-->
+            <!--/>-->
 
     </LinearLayout>
 

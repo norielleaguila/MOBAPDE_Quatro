@@ -1,7 +1,9 @@
 package edu.dlsu.mobapde.quatro;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -28,16 +30,46 @@ public class EditAccountActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         et = (EditText) findViewById(R.id.account_edit);
+
         final String passedData = getIntent().getExtras().getString("passed");
-        et.setText(passedData);
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if(passedData.equals("course")){
+            String course = sharedPreferences.getString(ProfileActivity.KEY_COURSE, null);
+
+            if(course != null)
+                et.setText(course);
+            else
+                et.setText("COURSE");
+        }
+        else{
+            String college = sharedPreferences.getString(ProfileActivity.KEY_COLLEGE, null);
+
+            if(college != null)
+                et.setText(college);
+            else
+                et.setText("COLLEGE");
+        }
+
         submitButton = (Button)findViewById(R.id.submit_button);
+
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                setResult(RESULT_OK, new Intent().putExtra("passedData", et.getText().toString()));
-                finish();
+            setResult(RESULT_OK);
+
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+
+                if(passedData.equals("course"))
+                    editor.putString(ProfileActivity.KEY_COURSE, et.getText().toString());
+                else
+                    editor.putString(ProfileActivity.KEY_COLLEGE, et.getText().toString());
+                editor.commit();
+
+            finish();
             }
         });
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

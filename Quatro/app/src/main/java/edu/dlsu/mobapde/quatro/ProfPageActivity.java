@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class ProfPageActivity extends AppCompatActivity {
 
-    Button go;
+//    Button go;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,16 +27,16 @@ public class ProfPageActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        go = (Button) findViewById(R.id.viewPostsBtn);
+//        go = (Button) findViewById(R.id.viewPostsBtn);
 
-        go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getBaseContext(), ProfFeedActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
+//        go.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(getBaseContext(), ProfFeedActivity.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
 
     }
 

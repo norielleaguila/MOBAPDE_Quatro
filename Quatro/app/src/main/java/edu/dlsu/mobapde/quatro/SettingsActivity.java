@@ -1,12 +1,16 @@
 package edu.dlsu.mobapde.quatro;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -17,6 +21,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
+    private Button editCourse, editCollege, logout;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +31,52 @@ public class SettingsActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mTextMessage = (TextView) findViewById(R.id.message);
         mTextMessage.setText("Settings");
+
+        editCourse = (Button) findViewById(R.id.button_course);
+        editCollege = (Button) findViewById(R.id.button_college);
+        logout = (Button) findViewById(R.id.logout);
+
+        editCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();        // Intent = opening new Activity
+
+                i.putExtra("passed", "course");
+
+                i.setClass(getBaseContext(), EditAccountActivity.class);
+
+                startActivity(i);
+            }
+        });
+
+        editCollege.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();        // Intent = opening new Activity
+
+                i.putExtra("passed", "college");
+
+                i.setClass(getBaseContext(), EditAccountActivity.class);
+
+                startActivity(i);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 0 && resultCode == RESULT_OK){
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+            editor.putString(ProfileActivity.KEY_COURSE, data.getExtras().getString("passedData"));
+            editor.commit();
+        }
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+            editor.putString(ProfileActivity.KEY_COLLEGE, data.getExtras().getString("passedData"));
+            editor.commit();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
