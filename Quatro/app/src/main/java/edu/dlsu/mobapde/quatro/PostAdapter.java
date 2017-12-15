@@ -24,6 +24,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     @Override
     public PostHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_rating, parent, false);
+
         return new PostHolder(v);
     }
 
@@ -46,16 +47,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
             public void onClick(View view) {
                 Post p = posts.get(position);
                 p.setUpvotes(p.getUpvotes() + 1);
-                holder.upVotes
-                        .setText(p.getUpvotes());
+                holder.upVotes.setText(p.getUpvotes() + "");
             }
         });
 
         holder.downBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Post p = (Post) view.getTag();
-                p.setUpvotes(p.getDownvotes() + 1);
+                Post p = posts.get(position);
+                p.setDownvotes(p.getDownvotes() + 1);
+                holder.downVotes.setText(p.getDownvotes() + "");
             }
         });
 
