@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="edu.dlsu.mobapde.quatro.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:src="@drawable/ic_appicon"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:id="@+id/imageView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
+    <ImageView
+        android:src="@drawable/ic_apptitle"
+        android:layout_width="170dp"
+        android:layout_height="130dp"
+        android:id="@+id/imageView"
+        android:layout_marginBottom="28dp"
+        android:layout_above="@+id/fbLogin"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:id="@+id/fbLogin"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text=" Facebook Login "
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginBottom="110dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+</RelativeLayout>

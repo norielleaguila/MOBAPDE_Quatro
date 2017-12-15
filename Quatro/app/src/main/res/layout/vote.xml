@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
+
+	<ImageButton
+		android:layout_width="36dp"
+		android:layout_height="36dp"
+		android:src="@drawable/ic_up"
+		android:background="#0000"
+		android:tint="@color/colorPrimary"
+		android:id="@+id/upBtn"/>
+
+	<TextView
+		android:id="@+id/upVotes"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="12"
+		android:textSize="@dimen/regular_text"
+		android:layout_centerHorizontal="true"
+		android:textColor="@color/colorGrey"
+		android:layout_below="@id/upBtn"/>
+
+	<TextView
+		android:id="@+id/downVotes"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="18"
+		android:textSize="@dimen/regular_text"
+		android:textColor="@color/colorGrey"
+		android:layout_marginTop="16dp"
+		android:layout_centerHorizontal="true"
+		android:layout_below="@id/upVotes"/>
+
+	<ImageButton
+		android:layout_width="36dp"
+		android:layout_height="36dp"
+		android:id="@+id/downBtn"
+		android:layout_below="@id/downVotes"
+		android:src="@drawable/ic_down"
+		android:background="#0000"
+		android:tint="@color/colorPrimary"
+		/>
+
+</RelativeLayout>
