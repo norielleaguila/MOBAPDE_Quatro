@@ -48,6 +48,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 Post p = posts.get(position);
                 p.setUpvotes(p.getUpvotes() + 1);
                 holder.upVotes.setText(p.getUpvotes() + "");
+                MainActivity.getDb().updateVotes(position, p.getDownvotes(), p.getUpvotes());
             }
         });
 
@@ -57,6 +58,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 Post p = posts.get(position);
                 p.setDownvotes(p.getDownvotes() + 1);
                 holder.downVotes.setText(p.getDownvotes() + "");
+                MainActivity.getDb().updateVotes(position, p.getDownvotes(), p.getUpvotes());
             }
         });
 

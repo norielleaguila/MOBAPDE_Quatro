@@ -375,6 +375,12 @@ public class DatabaseHelper {
         allPosts.add(post);
     }
 
+    public void updateVotes(int id, int dv, int uv){
+        id++;
+        dbRefPosts.child("0"+String.valueOf(id)).child("downvotes").setValue(dv);
+        dbRefPosts.child("0"+String.valueOf(id)).child("upvotes").setValue(uv);
+    }
+
     public ArrayList<Student> getAllStudents() {
         return allStudents;
     }
