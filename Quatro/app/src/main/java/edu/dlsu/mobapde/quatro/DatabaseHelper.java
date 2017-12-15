@@ -1,6 +1,8 @@
 package edu.dlsu.mobapde.quatro;
 
 import android.app.PendingIntent;
+import android.content.Intent;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -8,7 +10,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,184 +23,282 @@ import java.util.Map;
 
 public class DatabaseHelper {
 
+    final static String TAG = "DatabaseHelper";
+
     private FirebaseDatabase database;
     private DatabaseReference dbRefStudents;
-    private DatabaseReference dbRefFaculty;
-    private DatabaseReference dbRefReviews;
+    private DatabaseReference dbRefProf;
+    private DatabaseReference dbRefPosts;
+    private DatabaseReference dbRefCourses;
 
     private ArrayList<Student> allStudents;
-    private ArrayList<Faculty> allFaculty;
-    private ArrayList<Review> allReviews;
+    private ArrayList<Prof> allProfs;
+    private ArrayList<Post> allPosts;
+    private ArrayList<Course> allCourses;
 
-    public boolean connectToDatabase(){
+    public void connectToDatabase(){
 
         // Connect to DB
         database = FirebaseDatabase.getInstance();
         dbRefStudents = database.getReference().child("students");
-        dbRefFaculty = database.getReference().child("faculty");
-        dbRefReviews = database.getReference().child("reviews");
+        dbRefProf = database.getReference().child("profs");
+        dbRefPosts = database.getReference().child("posts");
+        dbRefCourses = database.getReference().child("courses");
 
-        System.out.println("dbRefFaculty: " + dbRefFaculty.toString());
-        System.out.println("dbRefStudents: " + dbRefStudents.toString());
-        System.out.println("dbRefReviews: " + dbRefReviews.toString());
+        Log.i(TAG, dbRefStudents.toString());
+        Log.i(TAG, dbRefCourses.toString());
+        Log.i(TAG, dbRefPosts.toString());
+        Log.i(TAG, dbRefProf.toString());
 
-        if(database != null)
-            return true;
-        else
-            return false;
+        readAllStudents();
+
     }
 
     public void readAllStudents(){
-
-//        System.out.println("wtf?");
         allStudents = new ArrayList<Student>();
         // Read from the database
         dbRefStudents.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Object temp = dataSnapshot.getValue();
-                ArrayList<Object> tempArrayList = (ArrayList<Object>) temp;
-
-                for (int i = 0; i < tempArrayList.size(); i++){
-                    getStudent((Map<String, Object>)tempArrayList.get(i));
-                }
-//                printAllStudents();
+                Log.w(TAG, "getting all students");
+                getStudents(((Map<String,Object>) dataSnapshot.getValue()));
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                System.out.println("Failed to read values.");
+                Log.e(TAG, "Failed to read values.");
             }
         });
+
+        readallProfs();
     }
 
-    public void readAllFaculty(){
-        System.out.println("READING ALL FACULTY DATA FROM DB");
-        allFaculty = new ArrayList<Faculty>();
+    public void readallProfs(){
+        allProfs = new ArrayList<Prof>();
         // Read from the database
-        dbRefFaculty.addValueEventListener(new ValueEventListener() {
+        dbRefProf.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Object temp = dataSnapshot.getValue();
-                System.out.print(temp.toString());
-                ArrayList<Object> tempArrayList = (ArrayList<Object>) temp;
-
-                for (int i = 0; i < tempArrayList.size(); i++){
-                    getFaculty((Map<String, Object>)tempArrayList.get(i));
-                }
-
-                System.out.println("RETRIEVED DATA FROM DB");
-                printAllFaculty();
+                Log.w(TAG, "getting all profs");
+                getProfsArrayList((ArrayList<Object>) dataSnapshot.getValue());
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                System.out.println("Failed to read values.");
+                Log.w(TAG, "Failed to read values.");
             }
         });
+
+        readAllCourses();
     }
 
-    public void readAllReviews(){
+    public void readAllPosts(){
 
-//        System.out.println("wtf?");
-        allReviews = new ArrayList<Review>();
+        allPosts = new ArrayList<Post>();
         // Read from the database
-        dbRefReviews.addValueEventListener(new ValueEventListener() {
+        dbRefPosts.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Object temp = dataSnapshot.getValue();
-                ArrayList<Object> tempArrayList = (ArrayList<Object>) temp;
-
-                for (int i = 0; i < tempArrayList.size(); i++){
-                    getReview((Map<String, Object>)tempArrayList.get(i));
-                }
-//                printAllStudents();
+                Log.w(TAG, "getting all posts");
+                getPosts(((Map<String,Object>) dataSnapshot.getValue()));
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                System.out.println("Failed to read values.");
+                Log.e(TAG, "Failed to read values.");
             }
         });
+        setAverageRatingPerProf();
+
     }
-    private void getStudent(Map<String, Object> student){
+
+    public void readAllCourses(){
+
+        allCourses = new ArrayList<Course>();
+        // Read from the database
+        dbRefPosts.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.w(TAG, "getting all courses");
+                getCourses(((Map<String,Object>) dataSnapshot.getValue()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.e(TAG, "Failed to read values.");
+            }
+        });
+
+        readAllPosts();
+    }
+
+    private void getStudents(Map<String, Object> students){
+        for (Map.Entry<String, Object> entry : students.entrySet()) {
+
+            Student tempStudent = new Student();
+            Map student = (Map) entry.getValue();
+
+            tempStudent.setCollege(String.valueOf(student.get("college")));
+            tempStudent.setCourse(String.valueOf(student.get("course")));
+            tempStudent.setEmail(String.valueOf(student.get("email")));
+            tempStudent.setFirst_name(String.valueOf(student.get("first_name")));
+            tempStudent.setLast_name(String.valueOf(student.get("last_name")));
+            tempStudent.setPassword(String.valueOf(student.get("password")));
+            tempStudent.setStudent_id(allStudents.size()+1);
+
+//            Log.i(TAG, tempStudent.toString());
+            allStudents.add(tempStudent);
+        }
+    }
+
+    public Student getStudentByID(int id){
         Student tempStudent = new Student();
+        Log.w(TAG, "LOOKING FOR STUDENT");
 
-        tempStudent.setCollege(String.valueOf(student.get("college")));
-        tempStudent.setCourse(String.valueOf(student.get("course")));
-        tempStudent.setEmail(String.valueOf(student.get("email")));
-        tempStudent.setFirst_name(String.valueOf(student.get("first_name")));
-        tempStudent.setLast_name(String.valueOf(student.get("last_name")));
-        tempStudent.setPassword(String.valueOf(student.get("password")));
-        tempStudent.setStudent_id(allStudents.size());
-
-        allStudents.add(tempStudent);
-    }
-
-    private void printAllStudents(){
-        for (int i = 0; i < allStudents.size(); i++){
-            System.out.println(allStudents.get(i).toString());
-        }
-    }
-
-    private void getFaculty(Map<String, Object> faculty){
-        Faculty tempFaculty = new Faculty();
-
-        System.out.println("GET FACULTY: " + faculty.toString() );
-
-        tempFaculty.setFirst_name(String.valueOf(faculty.get("first_name")));
-        tempFaculty.setLast_name(String.valueOf(faculty.get("last_name")));
-        tempFaculty.setDepartment(String.valueOf(faculty.get("department")));
-        tempFaculty.setTitle(String.valueOf(faculty.get("title")));
-        tempFaculty.setFaculty_id(allFaculty.size());
-
-        allFaculty.add(tempFaculty);
-    }
-
-    private void printAllFaculty(){
-        for(int i = 0; i < 10; i++){
-            System.out.println(allFaculty.get(i).toString());
-        }
-    }
-
-    public ArrayList<Faculty> searchFacultyByLastName(String last_name){
-        ArrayList<Faculty> facultyList = new ArrayList<Faculty>();
-
-        System.out.println("SEARCHING");
-
-        for(int i = 0; i < allFaculty.size(); i++){
-            if(allFaculty.get(i).getLast_name().equalsIgnoreCase(last_name)) {
-                facultyList.add(allFaculty.get(i));
+        for(int i = 0; i < allStudents.size(); i++){
+            if(allStudents.get(i).getStudent_id() == id) {
+                Log.v(TAG, "found student");
+                tempStudent = allStudents.get(i);
             }
         }
 
-        return facultyList;
+        return tempStudent;
     }
 
-    private void getReview(Map<String, Object> review){
-        System.out.println("REVIEW: " + review.toString());
-        Review tempReview = new Review();
-
-        tempReview.setFaculty_id(Integer.parseInt(String.valueOf(review.get("faculty_id"))));
-        tempReview.setStudent_id(Integer.parseInt(String.valueOf(review.get("student_id"))));
-        tempReview.setReview(String.valueOf(review.get("review")));
-        tempReview.setRating(Integer.parseInt(String.valueOf(review.get("rating"))));
-        tempReview.setUpvotes(Integer.parseInt(String.valueOf(review.get("upvotes"))));
-        tempReview.setDownvotes(Integer.parseInt(String.valueOf(review.get("downvotes"))));
-        tempReview.setSubject(String.valueOf(review.get("subject")));
-        tempReview.setReview_id(allReviews.size());
-
-        allReviews.add(tempReview);
+    private void getProfsArrayList(ArrayList<Object> profs){
+        for(int i = 0; i < profs.size(); i++)
+            getProfs((Map<String, Object>)profs.get(i));
     }
 
-    public void printAllReviews(){
-        for (int i = 0; i < allReviews.size(); i++){
-            System.out.println(allReviews.get(i).toString());
+    private void getProfs(Map<String, Object> prof){
+            Prof tempProf = new Prof();
+
+            tempProf.setFirst_name(String.valueOf(prof.get("first_name")));
+            tempProf.setLast_name(String.valueOf(prof.get("last_name")));
+            tempProf.setDepartment(String.valueOf(prof.get("department")));
+            tempProf.setTitle(String.valueOf(prof.get("title")));
+            tempProf.setProf_id(allProfs.size());
+
+            Prof.total_profs++;
+            allProfs.add(tempProf);
+    }
+
+    private void getCourses(Map<String, Object> courses){
+        for (Map.Entry<String, Object> entry : courses.entrySet()) {
+            Course tempCourse = new Course();
+            Map course = (Map) entry.getValue();
+
+            tempCourse.setCourse_code(String.valueOf(course.get("course_code")));
+            tempCourse.setCourse_name(String.valueOf(course.get("course_name")));
+
+            allCourses.add(tempCourse);
+        }
+    }
+
+    public Course getCourseByCourseCode(final String course_code){
+        final Course tempCourse = new Course();
+        for(int i = 0; i < allPosts.size(); i++){
+            dbRefCourses.child(i+"").addValueEventListener (new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    Course temp  = snapshot.getValue(Course.class);
+                    if(temp.getCourse_code().equals(course_code)) {
+                        tempCourse.setCourse_code(temp.getCourse_code());
+                        tempCourse.setCourse_name(temp.getCourse_name());
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e(TAG, "failled to look for " + course_code);
+                }
+            });
+        }
+        return tempCourse;
+    }
+
+    public ArrayList<Prof> searchProfByLastName(String last_name){
+        ArrayList<Prof> ProfList = new ArrayList<Prof>();
+
+        Log.i(TAG, "SEARCHING");
+
+        for(int i = 0; i < allProfs.size(); i++){
+            if(allProfs.get(i).getLast_name().equalsIgnoreCase(last_name)) {
+                ProfList.add(allProfs.get(i));
+            }
+        }
+
+        return ProfList;
+    }
+
+    public ArrayList<Prof> searchProfByDepartment(String last_name){
+        ArrayList<Prof> ProfList = new ArrayList<Prof>();
+
+        for(int i = 0; i < allProfs.size(); i++){
+            if(allProfs.get(i).getLast_name().equalsIgnoreCase(last_name)) {
+                ProfList.add(allProfs.get(i));
+            }
+        }
+
+        return ProfList;
+    }
+
+    public Prof searchProfByID(int id){
+        Prof tempProf = new Prof();
+
+        for(int i = 0; i < allProfs.size(); i++){
+            if(allProfs.get(i).getProf_id() == id)
+                tempProf = allProfs.get(i);
+        }
+
+        return tempProf;
+    }
+
+    public void setAverageRatingPerProf() {
+        ArrayList<Post> postsPerProf = new ArrayList<Post>();
+        int foundProfID = 0;
+        double sum = 0;
+
+        for(int i = 0; i < allPosts.size(); i++){
+            for(int j = 0; j < allProfs.size(); j++){
+                if(allPosts.get(i).getProf_id() == allProfs.get(j).getProf_id()){
+                    foundProfID = allProfs.get(j).getProf_id();
+                    postsPerProf.add(allPosts.get(i));
+                }
+            }
+
+            for(int j = 0; j < postsPerProf.size(); j++)
+                 sum += postsPerProf.get(j).getRating();
+
+            allProfs.get(foundProfID).setRating(sum/postsPerProf.size());
+            allProfs.get(foundProfID).setNum_reviews(postsPerProf.size());
+        }
+    }
+
+    private void getPosts(Map<String, Object> posts){
+        for (Map.Entry<String, Object> entry : posts.entrySet()) {
+            Post tempPosts = new Post();
+            Map post = (Map) entry.getValue();
+            Student tempStudent = getStudentByID(tempPosts.getUser_id());
+            Prof tempProf = searchProfByID(tempPosts.getProf_id());
+
+            tempPosts.setProf_id(Integer.parseInt(String.valueOf(post.get("prof_id"))));
+            tempPosts.setUser_id(Integer.parseInt(String.valueOf(post.get("user_id"))));
+            tempPosts.setUser_name(tempStudent.getFirst_name() + " " + tempStudent.getLast_name());
+            tempPosts.setProf_name(tempProf.getLast_name() + " " + tempProf.getFirst_name());
+            tempPosts.setReview(String.valueOf(post.get("review")));
+            tempPosts.setRating(Integer.parseInt(String.valueOf(post.get("rating"))));
+            tempPosts.setUpvotes(Integer.parseInt(String.valueOf(post.get("upvotes"))));
+            tempPosts.setDownvotes(Integer.parseInt(String.valueOf(post.get("downvotes"))));
+//            tempPosts.setCourse(String.valueOf(post.get("course")));
+            allPosts.add(tempPosts);
+
+            Log.i(TAG, tempStudent.getFirst_name() + " " + tempStudent.getLast_name());
+            Log.i(TAG, tempProf.getLast_name() + " " + tempProf.getFirst_name());
         }
     }
 
@@ -202,11 +306,33 @@ public class DatabaseHelper {
         return allStudents;
     }
 
-    public ArrayList<Faculty> getAllFaculty() {
-        return allFaculty;
+    public ArrayList<Prof> getallProfs() {
+        return allProfs;
     }
 
-    public ArrayList<Review> getAllReviews() {
-        return allReviews;
+    public ArrayList<Post> getAllPosts() {
+        return allPosts;
+    }
+
+    public void printAllData(){
+        Log.i(TAG, "ALL COURSES: ");
+        for (int i = 0; i < allCourses.size(); i++){
+            Log.i(TAG, allCourses.get(i).toString());;
+        }
+
+        Log.i(TAG, "ALL PROFS: ");
+        for (int i = 0; i < allProfs.size(); i++){
+            Log.i(TAG, allProfs.get(i).toString());
+        }
+
+        Log.i(TAG, "ALL POSTS: ");
+        for (int i = 0; i < allPosts.size(); i++){
+            Log.i(TAG, allPosts.get(i).toString());
+        }
+
+        Log.i(TAG, "ALL STUDENTS: ");
+        for (int i = 0; i < allPosts.size(); i++){
+            Log.i(TAG, allStudents.get(i).toString());
+        }
     }
 }

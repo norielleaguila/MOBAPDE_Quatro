@@ -16,60 +16,27 @@ import java.util.ArrayList;
  * Created by Norielle on 11/14/2017.
  */
 
-public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+        public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     private ArrayList<Post> posts;
 
     public PostAdapter(ArrayList<Post> posts){this.posts = posts;}
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        switch (viewType){
-            case 0:
-                return new RatingHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.post_rating, parent, false));
-            case 1:
-                return new ReviewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.post_review, parent, false));
-        }
-        return null;
+    public PostHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_rating, parent, false);
+        return new PostHolder(v);
     }
 
     @Override
-    public int getItemViewType(int position){
-        if(posts.get(position) instanceof Rating)
-            return 0;
-        return 1;
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(PostHolder holder, int position) {
         Post curr = posts.get(position);
-
-        switch(holder.getItemViewType()){
-            case 0:
-                RatingHolder ratingHolder = (RatingHolder) holder;
-                ratingHolder.rating.setRating(((Rating) curr).getRating());
-
-                setItems(ratingHolder, curr);
-
-                break;
-            case 1:
-                ReviewHolder reviewHolder = (ReviewHolder) holder;
-                reviewHolder.review.setText(((PostReview) curr).getReview());
-
-                setItems(reviewHolder, curr);
-
-                break;
-        }
-    }
-
-    public void setItems(PostHolder holder, Post curr){
-        holder.userName.setText(curr.getUserName());
-        holder.actionTag.setText(curr.getAction());
-        holder.profName.setText(curr.getProfName());
+        holder.userName.setText(curr.getUser_name());
+//        holder.actionTag.setText(curr.getAc());
+        holder.profName.setText(curr.getProf_name());
         holder.course.setText(curr.getCourse());
         holder.grade.setText(curr.getGrade() + "");
-        holder.upVotes.setText(curr.getUpVotes() + "");
-        holder.downVotes.setText(curr.getDownVotes() + "");
+        holder.upVotes.setText(curr.getUpvotes() + "");
+        holder.downVotes.setText(curr.getDownvotes() + "");
 
         holder.itemView.setTag(curr);
 
@@ -77,7 +44,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Post p = (Post) view.getTag();
-                p.setUpVotes(p.getUpVotes() + 1);
+                p.setUpvotes(p.getUpvotes() + 1);
             }
         });
 
@@ -85,7 +52,36 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Post p = (Post) view.getTag();
-                p.setUpVotes(p.getDownVotes() + 1);
+                p.setUpvotes(p.getDownvotes() + 1);
+            }
+        });
+
+    }
+
+    public void setItems(PostHolder holder, Post curr){
+        holder.userName.setText(curr.getUser_name());
+//        holder.actionTag.setText(curr.getAc());
+        holder.profName.setText(curr.getProf_name());
+        holder.course.setText(curr.getCourse());
+        holder.grade.setText(curr.getGrade() + "");
+        holder.upVotes.setText(curr.getUpvotes() + "");
+        holder.downVotes.setText(curr.getDownvotes() + "");
+
+        holder.itemView.setTag(curr);
+
+        holder.upBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Post p = (Post) view.getTag();
+                p.setUpvotes(p.getUpvotes() + 1);
+            }
+        });
+
+        holder.downBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Post p = (Post) view.getTag();
+                p.setUpvotes(p.getDownvotes() + 1);
             }
         });
     }
@@ -95,7 +91,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return posts.size();
     }
 
-    public abstract class PostHolder extends RecyclerView.ViewHolder{
+    public class PostHolder extends RecyclerView.ViewHolder{
         protected RelativeLayout container;
         protected TextView userName;
         protected TextView actionTag;
@@ -120,28 +116,6 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             downVotes = itemView.findViewById(R.id.downVotes);
             upBtn = itemView.findViewById(R.id.upBtn);
             downBtn = itemView.findViewById(R.id.downBtn);
-        }
-    }
-
-    public class ReviewHolder extends PostHolder{
-        TextView review;
-
-        public ReviewHolder(View itemView){
-            super(itemView);
-
-            container = itemView.findViewById(R.id.reviewContainer);
-
-            review = itemView.findViewById(R.id.reviewContent);
-        }
-    }
-
-    public class RatingHolder extends PostHolder{
-        RatingBar rating;
-
-        public RatingHolder(View itemView){
-            super(itemView);
-            container = itemView.findViewById(R.id.ratingContainer);
-            rating = itemView.findViewById(R.id.ratingBar);
         }
     }
 }

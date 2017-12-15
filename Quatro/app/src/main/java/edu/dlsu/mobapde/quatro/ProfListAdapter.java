@@ -31,12 +31,12 @@ public class ProfListAdapter extends RecyclerView.Adapter<ProfListAdapter.ProfHo
     public void onBindViewHolder(ProfHolder holder, int position) {
         final Prof curr = profList.get(position);
 
-        holder.card_profName.setText(curr.getProfName());
-        holder.card_profDept.setText(curr.getDept());
-        holder.card_profRating.setRating(curr.getRating());
-        holder.card_coursesTaught.setText(curr.getCoursesForDisplay());
-        holder.card_avgGrade.setText(curr.getAvgGrade() + "");
-        holder.card_numReviews.setText(curr.getNumReviews() + "");
+        holder.card_profName.setText(curr.getLast_name() + ", " + curr.getFirst_name());
+        holder.card_profDept.setText(curr.getDepartment());
+        holder.card_profRating.setRating((float)curr.getRating());
+//        holder.card_coursesTaught.setText(curr.getCoursesForDisplay());
+        holder.card_avgGrade.setText(curr.getAvg_grade() + "");
+        holder.card_numReviews.setText(curr.getNum_reviews() + "");
 
         holder.itemView.setTag(curr);
 
