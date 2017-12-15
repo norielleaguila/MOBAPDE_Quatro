@@ -21,7 +21,7 @@
         android:layout_marginRight="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:text="Remedios de Dios Bulos"
         android:textAllCaps="true"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/regular_text"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@+id/actionTag"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:text="NA"
         android:textAllCaps="true"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/regular_text"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@+id/courseLbl"

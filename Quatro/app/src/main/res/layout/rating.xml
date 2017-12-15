@@ -7,11 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/rectangle">
+    android:background="@drawable/rectangle2">
 
     <include layout="@layout/post_template">
     </include>
 
     <include layout="@layout/rating_content"></include>
+
+    <include layout="@layout/review_content"></include>
 
 </LinearLayout>
