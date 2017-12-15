@@ -8,7 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -16,9 +20,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
-    private RecyclerView rv;
+    private RecyclerView rvPosts;
 
     private ArrayList<Post> postsList;
+
+    FirebaseRecyclerAdapter<Post, PostViewHolder> postPostViewHolderFirebaseRecyclerAdapter;
+
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +38,49 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        rv = (RecyclerView) findViewById(R.id.homeFeed);
+        rvPosts = (RecyclerView) findViewById(R.id.homeFeed);
 
         initList();
 
-        PostAdapter pa = new PostAdapter(postsList);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference postDatabaseReference = databaseReference.child("posts");
 
-        rv.setAdapter(pa);
-        rv.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false));
+        postPostViewHolderFirebaseRecyclerAdapter
+                = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.post_rating, PostViewHolder.class, MainActivity.getDb().getDbRefPosts()) {
+
+            @Override
+            protected void populateViewHolder(PostViewHolder holder, Post curr, int position) {
+
+                holder.userName.setText(curr.getUser_name());
+                holder.profName.setText(curr.getProf_name());
+                holder.course.setText(curr.getCourse());
+                holder.grade.setText(curr.getGrade() + "");
+                holder.upVotes.setText(curr.getUpvotes() + "");
+                holder.downVotes.setText(curr.getDownvotes() + "");
+
+                holder.itemView.setTag(curr);
+
+                holder.upBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Post p = (Post) view.getTag();
+                        p.setUpvotes(p.getUpvotes() + 1);
+                    }
+                });
+
+                holder.downBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Post p = (Post) view.getTag();
+                        p.setDownvotes(p.getDownvotes() + 1);
+                    }
+                });
+
+            }
+        };
+
+        rvPosts.setAdapter(postPostViewHolderFirebaseRecyclerAdapter);
+        rvPosts.setLayoutManager(new LinearLayoutManager(getBaseContext()));
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -70,7 +113,6 @@ public class HomeActivity extends AppCompatActivity {
     };
 
     private void initList() {
-
         DatabaseHelper db = MainActivity.getDb();
         postsList = db.getAllPosts();
         ArrayList<Student> userList = db.getAllStudents();

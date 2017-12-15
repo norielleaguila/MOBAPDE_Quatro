@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackground"
+    android:background="#0FFF"
     android:id="@+id/profCardContainer">
 
     <TextView
@@ -20,7 +20,7 @@
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="15dp"
-        android:textColor="@color/colorAccent"
+        android:textColor="#484848"
         android:backgroundTint="@color/colorPrimary"
         android:textSize="@dimen/regular_text"
         android:textAllCaps="true"
@@ -35,7 +35,7 @@
         android:textAllCaps="true"
         android:textAlignment="center"
         android:textSize="@dimen/regular_text"
-        android:textColor="@color/colorAccent"
+        android:textColor="#484848"
         android:backgroundTint="@color/colorPrimary"
         android:background="@drawable/rectangle"
         android:id="@+id/reviewBtn"
@@ -58,7 +58,7 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/femaleicon1"
         android:layout_alignStart="@id/card"
         android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"

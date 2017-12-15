@@ -31,7 +31,6 @@ import java.util.ArrayList;
     public void onBindViewHolder(PostHolder holder, int position) {
         Post curr = posts.get(position);
         holder.userName.setText(curr.getUser_name());
-//        holder.actionTag.setText(curr.getAc());
         holder.profName.setText(curr.getProf_name());
         holder.course.setText(curr.getCourse());
         holder.grade.setText(curr.getGrade() + "");

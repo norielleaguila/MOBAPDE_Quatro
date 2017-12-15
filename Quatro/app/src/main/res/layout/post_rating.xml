@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackground"
+    android:background="#0FFF"
     android:id="@+id/ratingContainer">
 
     <include
@@ -29,7 +29,7 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/femaleicon2"
         android:layout_alignStart="@id/post"
         android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"
