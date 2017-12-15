@@ -79,7 +79,7 @@ public class DatabaseHelper {
     public void readallProfs(){
         allProfs = new ArrayList<Prof>();
         // Read from the database
-        dbRefProf.child("profs").addValueEventListener(new ValueEventListener() {
+        dbRefProf.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 allProfs = new ArrayList<Prof>();
