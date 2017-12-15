@@ -17,7 +17,6 @@
     </style>
 
     <style name="Rating" parent="Theme.AppCompat">
-
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">#FFFFC53D</item>
 

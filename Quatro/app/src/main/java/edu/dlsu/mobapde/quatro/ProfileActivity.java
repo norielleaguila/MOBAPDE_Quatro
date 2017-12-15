@@ -19,7 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private TextView userName;
-    private Button btnAccount, btnNotif, btnSettings, btnPosts;
+    private Button btnSettings;
 
 
     @Override
@@ -30,24 +30,9 @@ public class ProfileActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mTextMessage = (TextView) findViewById(R.id.message);
-        userName = (TextView) findViewById(R.id.profileName);
+        userName = (TextView) findViewById(R.id.userName);
         userName.setText("Janella Co");
-        btnAccount = (Button)findViewById(R.id.button_account);
-        btnNotif = (Button)findViewById(R.id.button_notifs);
         btnSettings = (Button)findViewById(R.id.button_settings);
-        btnPosts = (Button)findViewById(R.id.button_posts);
-
-        btnAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent();        // Intent = opening new Activity
-
-                i.putExtra("passed", btnAccount.getText());
-                i.setClass(getBaseContext(), AccountActivity.class);
-
-                startActivity(i);
-            }
-        });
 
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,30 +41,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                 i.putExtra("passed", btnSettings.getText());
                 i.setClass(getBaseContext(), SettingsActivity.class);
-
-                startActivity(i);
-            }
-        });
-
-        btnNotif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent();        // Intent = opening new Activity
-
-                i.putExtra("passed", btnNotif.getText());
-                i.setClass(getBaseContext(), NotifActivity.class);
-
-                startActivity(i);
-            }
-        });
-
-        btnPosts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent();        // Intent = opening new Activity
-
-                i.putExtra("passed", btnPosts.getText());
-                i.setClass(getBaseContext(), PostActivity.class);
 
                 startActivity(i);
             }
