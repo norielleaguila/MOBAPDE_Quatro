@@ -46,34 +46,36 @@ public class ProfListActivity extends AppCompatActivity {
                 FragmentManager f = getFragmentManager();
                 switch(which){
                     case 0:
-
-                        final RateDialog rateDialog = new RateDialog();
-
-                        rateDialog.setOnUserApprovesListener(new RateDialog.OnUserApprovesListener() {
-                            @Override
-                            public void onUserApproves(DialogInterface dialog, int which, String course, String grade, float rating) {
-                                DatabaseHelper db  = MainActivity.getDb();
-
-                                Post temp = new Post();
-                                temp.setCourse(course);
-                                temp.setGrade(Double.parseDouble(grade));
-                                temp.setRating(rating);
-
-                                temp.setProf_name(prof.getLast_name() + ", " + prof.getFirst_name());
-                                temp.setProf_id(prof.getProf_id());
-
-                                /* TODO: get logged in user's values (name and user id) */
-
-                                temp.setPost_id(db.getAllPosts().size()+1);
-
-                                db.addPost(temp);
-                            }
-                        });
-
-                        rateDialog.show(f, "");
-
+//                        final RateDialog rateDialog = new RateDialog();
+//
+//                        rateDialog.setOnUserApprovesListener(new RateDialog.OnUserApprovesListener() {
+//                            @Override
+//                            public void onUserApproves(DialogInterface dialog, int which, String course, String grade, float rating) {
+//                                DatabaseHelper db  = MainActivity.getDb();
+//
+//                                Post temp = new Post();
+//                                temp.setCourse(course);
+//                                temp.setGrade(Double.parseDouble(grade));
+//                                temp.setRating(rating);
+//
+//                                temp.setProf_name(prof.getLast_name() + ", " + prof.getFirst_name());
+//                                temp.setProf_id(prof.getProf_id());
+//
+//                                /* TODO: get logged in user's values (name and user id) */
+//
+//                                temp.setPost_id(db.getAllPosts().size()+1);
+//
+//                                db.addPost(temp);
+//                            }
+//                        });
+//
+//                        rateDialog.show(f, "");
+//
 //                        TextView title = (TextView) findViewById(R.id.rate_title);
 //                        title.setText("Rate " + prof.getProfName());
+                        Intent i = new Intent(getBaseContext(), ProfPageActivity.class);
+                        startActivity(i);
+                        finish();
                         break;
                     case 1:
 
@@ -106,11 +108,6 @@ public class ProfListActivity extends AppCompatActivity {
 
 //                        TextView title2 = (TextView) findViewById(R.id.review_title);
 //                        title2.setText("Review " + prof.getProfName());
-                        break;
-                    case 2:
-                        Intent i = new Intent(getBaseContext(), ProfPageActivity.class);
-                        startActivity(i);
-                        finish();
                         break;
                 }
             }

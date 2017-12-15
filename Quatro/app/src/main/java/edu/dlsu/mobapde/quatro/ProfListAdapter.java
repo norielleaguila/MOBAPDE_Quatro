@@ -40,7 +40,7 @@ public class ProfListAdapter extends RecyclerView.Adapter<ProfListAdapter.ProfHo
 
         holder.itemView.setTag(curr);
 
-        holder.rateBtn.setOnClickListener(new View.OnClickListener() {
+        holder.viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(mOnItemClickListener != null){
@@ -57,15 +57,6 @@ public class ProfListAdapter extends RecyclerView.Adapter<ProfListAdapter.ProfHo
                 }
             }
         });
-
-        holder.card_profIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(mOnItemClickListener != null){
-                    mOnItemClickListener.onItemClick(2, curr);
-                }
-            }
-        });
     }
 
     @Override
@@ -75,7 +66,7 @@ public class ProfListAdapter extends RecyclerView.Adapter<ProfListAdapter.ProfHo
 
     public class ProfHolder extends RecyclerView.ViewHolder{
         RelativeLayout profCardContainer;
-        TextView rateBtn;
+        TextView viewBtn;
         TextView reviewBtn;
         TextView card_profName;
         TextView card_profDept;
@@ -91,7 +82,7 @@ public class ProfListAdapter extends RecyclerView.Adapter<ProfListAdapter.ProfHo
             super(itemView);
 
             profCardContainer = itemView.findViewById(R.id.profCardContainer);
-            rateBtn = itemView.findViewById(R.id.rateBtn);
+            viewBtn = itemView.findViewById(R.id.viewBtn);
             reviewBtn = itemView.findViewById(R.id.reviewBtn);
             card_profName = itemView.findViewById(R.id.card_profName);
             card_profDept = itemView.findViewById(R.id.card_profDept);

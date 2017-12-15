@@ -9,7 +9,7 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_margin"
+        android:layout_marginBottom="15dp"
         android:numStars="5"
         android:progressTint="@color/colorStar"
         android:rating="3.5"

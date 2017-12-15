@@ -18,15 +18,15 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-
-    private RecyclerView rvPosts;
-
-    private ArrayList<Post> postsList;
-
     FirebaseRecyclerAdapter<Post, PostViewHolder> postPostViewHolderFirebaseRecyclerAdapter;
 
     DatabaseReference databaseReference;
+
+    private TextView mTextMessage;
+
+    private RecyclerView rv;
+
+    private ArrayList<Post> postsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,49 +38,14 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        rvPosts = (RecyclerView) findViewById(R.id.homeFeed);
+        rv = (RecyclerView) findViewById(R.id.homeFeed);
 
         initList();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference postDatabaseReference = databaseReference.child("posts");
+        PostAdapter pa = new PostAdapter(postsList);
 
-        postPostViewHolderFirebaseRecyclerAdapter
-                = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.post_rating, PostViewHolder.class, MainActivity.getDb().getDbRefPosts()) {
-
-            @Override
-            protected void populateViewHolder(PostViewHolder holder, Post curr, int position) {
-
-                holder.userName.setText(curr.getUser_name());
-                holder.profName.setText(curr.getProf_name());
-                holder.course.setText(curr.getCourse());
-                holder.grade.setText(curr.getGrade() + "");
-                holder.upVotes.setText(curr.getUpvotes() + "");
-                holder.downVotes.setText(curr.getDownvotes() + "");
-
-                holder.itemView.setTag(curr);
-
-                holder.upBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Post p = (Post) view.getTag();
-                        p.setUpvotes(p.getUpvotes() + 1);
-                    }
-                });
-
-                holder.downBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Post p = (Post) view.getTag();
-                        p.setDownvotes(p.getDownvotes() + 1);
-                    }
-                });
-
-            }
-        };
-
-        rvPosts.setAdapter(postPostViewHolderFirebaseRecyclerAdapter);
-        rvPosts.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        rv.setAdapter(pa);
+        rv.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false));
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

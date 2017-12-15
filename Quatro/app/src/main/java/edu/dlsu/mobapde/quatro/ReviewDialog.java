@@ -33,7 +33,7 @@ public class ReviewDialog extends DialogFragment{
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_review, null);
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity())
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
                 .setView(view)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override

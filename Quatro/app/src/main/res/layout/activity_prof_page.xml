@@ -22,7 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/ic_profileicon"
+                android:src="@drawable/femaleicon1"
                 android:layout_marginEnd="10dp"
                 />
 
@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Professor Name"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"
                     android:textSize="20sp"
                     />
@@ -118,7 +118,7 @@
             android:text="View all related posts"
             android:layout_gravity="bottom"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:backgroundTintMode="src_over"
             android:id="@+id/viewPostsBtn"
             />

@@ -9,7 +9,7 @@
     android:id="@+id/profCardContainer">
 
     <TextView
-        android:id="@+id/rateBtn"
+        android:id="@+id/viewBtn"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -43,7 +43,7 @@
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="15dp"
-        android:layout_toEndOf="@+id/rateBtn" />
+        android:layout_toEndOf="@+id/viewBtn" />
 
     <include
         layout="@layout/card"
