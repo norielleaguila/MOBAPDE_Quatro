@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_account);
 
         db.connectToDatabase();
-        db.readAllFaculty();
-        db.readAllStudents();
-        db.readAllReviews();
     }
 
     public static DatabaseHelper getDb() {

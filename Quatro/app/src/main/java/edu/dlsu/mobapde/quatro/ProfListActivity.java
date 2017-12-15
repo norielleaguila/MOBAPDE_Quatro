@@ -23,7 +23,7 @@ public class ProfListActivity extends AppCompatActivity {
 
     TextView rateBtn;
     TextView reviewBtn;
-    ArrayList<Faculty> facultyList;
+    ArrayList<Prof> facultyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,19 +117,7 @@ public class ProfListActivity extends AppCompatActivity {
     };
 
     public void initList(){
-        profList = new ArrayList<>();
-
-        profList.add(new Prof("Jordan Deja", "ST", 4.5f, 3.0f, 41));
-        profList.add(new Prof("Solomon Sy", "ST", 3.0f, 2.0f, 36));
-        profList.add(new Prof("Roger Uy", "ST", 5.0f, 2.5f, 62));
-        DatabaseHelper db = MainActivity.getDb();
-        facultyList = db.getAllFaculty();
-
-        for(int i = 179; i < 184; i++){
-            Prof tempProf = new Prof(facultyList.get(i).getFirst_name() + " " + facultyList.get(i).getLast_name(),facultyList.get(i).getDepartment(), 4.0f, 4.0f, 21);
-
-            profList.add(tempProf);
-        }
+        profList = MainActivity.getDb().getallProfs();
     }
 
 }
