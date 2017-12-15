@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -37,21 +38,35 @@ public class ProfListActivity extends AppCompatActivity {
 
         initList();
 
-        ProfListAdapter pa = new ProfListAdapter(profList);
+        final ProfListAdapter pa = new ProfListAdapter(profList);
 
         pa.setmOnItemClickListener(new ProfListAdapter.OnItemClickListener(){
             @Override
-            public void onItemClick(int which, Prof prof){
+            public void onItemClick(int which, final Prof prof){
                 FragmentManager f = getFragmentManager();
                 switch(which){
                     case 0:
 
-                        RateDialog rateDialog = new RateDialog();
+                        final RateDialog rateDialog = new RateDialog();
 
                         rateDialog.setOnUserApprovesListener(new RateDialog.OnUserApprovesListener() {
                             @Override
                             public void onUserApproves(DialogInterface dialog, int which, String course, String grade, float rating) {
-                                // TODO create post to add to db
+                                DatabaseHelper db  = MainActivity.getDb();
+
+                                Post temp = new Post();
+                                temp.setCourse(course);
+                                temp.setGrade(Double.parseDouble(grade));
+                                temp.setRating(rating);
+
+                                temp.setProf_name(prof.getLast_name() + ", " + prof.getFirst_name());
+                                temp.setProf_id(prof.getProf_id());
+
+                                /* TODO: get logged in user's values (name and user id) */
+
+                                temp.setPost_id(db.getAllPosts().size()+1);
+
+                                db.addPost(temp);
                             }
                         });
 
@@ -67,7 +82,22 @@ public class ProfListActivity extends AppCompatActivity {
                         reviewDialog.setOnUserApprovesListener(new ReviewDialog.OnUserApprovesListener() {
                             @Override
                             public void onUserApproves(DialogInterface dialog, int which, String course, String grade, String review) {
-                                // TODO create post to add to db
+
+                                DatabaseHelper db  = MainActivity.getDb();
+
+                                Post temp = new Post();
+                                temp.setCourse(course);
+                                temp.setGrade(Double.parseDouble(grade));
+                                temp.setReview(review);
+
+                                temp.setProf_name(prof.getLast_name() + ", " + prof.getFirst_name());
+                                temp.setProf_id(prof.getProf_id());
+
+                                /* TODO: get logged in user's values (name and user id) */
+
+                                temp.setPost_id(db.getAllPosts().size()+1);
+
+                                db.addPost(temp);
                             }
                         });
 
