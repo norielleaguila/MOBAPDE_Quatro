@@ -6,4 +6,8 @@
     <string name="title_me">Me</string>
     <string name="action_review">Reviewed</string>
     <string name="action_rate">Rated</string>
+
+    <string name="facebook_app_id">1949526775306946</string>
+    <string name="fb_login_protocol_scheme">fb1949526775306946</string>
+
 </resources>
