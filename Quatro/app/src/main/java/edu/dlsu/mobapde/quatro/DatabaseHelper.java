@@ -52,14 +52,7 @@ public class DatabaseHelper {
         Log.i(TAG, dbRefPosts.toString());
         Log.i(TAG, dbRefProf.toString());
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                readAllCourses();
-            }
-        }).start();
-
-
+        readAllCourses();
     }
 
     public void readAllStudents(){
@@ -71,6 +64,7 @@ public class DatabaseHelper {
                 allStudents = new ArrayList<Student>();
                 Log.w(TAG, "getting all students");
                 getStudents(((Map<String,Object>) dataSnapshot.getValue()));
+                Log.w(TAG, "got all students");
             }
 
             @Override
@@ -85,13 +79,13 @@ public class DatabaseHelper {
     public void readallProfs(){
         allProfs = new ArrayList<Prof>();
         // Read from the database
-        dbRefProf.addValueEventListener(new ValueEventListener() {
-
+        dbRefProf.child("profs").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 allProfs = new ArrayList<Prof>();
-                Log.w(TAG, "getting all profs");
-                getProfs((Map<String, Object>) dataSnapshot.getValue());
+                Log.w(TAG, "getting all profs " + dataSnapshot.getValue().toString());
+//                getProfsArrayList((Map<String, Object>) dataSnapshot.getValue());
+                getProfsArrayList((ArrayList<Object>) dataSnapshot.getValue());
                 Log.w(TAG, "got all profs");
             }
 
@@ -102,13 +96,13 @@ public class DatabaseHelper {
             }
         });
 
-        try {
-            Thread.sleep(2500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                readAllStudents();
+            }
+        }).start();
 
-        readAllStudents();
     }
 
     public void readAllPosts(){
@@ -150,7 +144,12 @@ public class DatabaseHelper {
             }
         });
 
-       readallProfs();
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        readallProfs();
     }
 
     private void getStudents(Map<String, Object> students){
@@ -193,7 +192,7 @@ public class DatabaseHelper {
 //            tempPosts.setCourse(String.valueOf(post.get("course")));
             allPosts.add(tempPosts);
 
-            Log.e(TAG, tempPosts.toString());
+//            Log.e(TAG, tempPosts.toString());
         }
     }
 
@@ -202,27 +201,32 @@ public class DatabaseHelper {
             getProfs((Map<String, Object>)profs.get(i));
     }
 
-    private void getProfs(Map<String, Object> prof){
-        Prof tempProf = new Prof();
+    private void getProfs(Map<String, Object> profs){
+//        for (Map.Entry<String, Object> entry : profs.entrySet()) {
 
-        tempProf.setFirst_name(String.valueOf(prof.get("first_name")));
-        tempProf.setLast_name(String.valueOf(prof.get("last_name")));
-        tempProf.setDepartment(String.valueOf(prof.get("department")));
-        tempProf.setTitle(String.valueOf(prof.get("title")));
-        tempProf.setProf_id(allProfs.size());
+            Prof tempProf = new Prof();
+//            Map prof = (Map) entry.getValue();
 
-        Log.w(TAG, prof.toString());
+            tempProf.setFirst_name(String.valueOf(profs.get("first_name")));
+            tempProf.setLast_name(String.valueOf(profs.get("last_name")));
+            tempProf.setDepartment(String.valueOf(profs.get("department")));
+            tempProf.setTitle(String.valueOf(profs.get("title")));
+            tempProf.setProf_id(allProfs.size());
+
+            Log.w(TAG, profs.toString());
 
 //        for(int i = 0; i < tempCourses.length; i++){
 //            tempProf.addCourse(allCourses.get(tempCourses[i]));
 //        }
 
-        Prof.total_profs++;
-        allProfs.add(tempProf);
+            Prof.total_profs++;
+            allProfs.add(tempProf);
+//        }
+
     }
 
     private void getCoursesArrayList(ArrayList<Object> courses){
-        Log.d(TAG, courses.toString());
+//        Log.d(TAG, courses.toString());
         for(int i = 1; i <courses.size(); i++)
             getCourses((Map<String, Object>)courses.get(i));
     }
@@ -332,14 +336,17 @@ public class DatabaseHelper {
     }
 
     public Prof searchProfByID(int id){
-        Prof tempProf = new Prof();
-        Log.w(TAG, "looking for prof id " +  id);
+        Prof tempProf = null;
+        Log.w(TAG, "looking for prof id " +  id + " in " + Prof.total_profs);
 
         for(int i = 0; i < allProfs.size(); i++){
             if(allProfs.get(i).getProf_id() == id) {
                 tempProf = allProfs.get(i);
             }
         }
+
+        if(tempProf == null)
+            Log.e(TAG, "did not find prof");
 
         return tempProf;
     }
