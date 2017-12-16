@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Asus on 11/14/2017.
@@ -30,6 +31,7 @@ public class EditAccountActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         et = (EditText) findViewById(R.id.account_edit);
+        TextView tv = (TextView) findViewById(R.id.edit_greet);
 
         final String passedData = getIntent().getExtras().getString("passed");
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -40,16 +42,30 @@ public class EditAccountActivity extends AppCompatActivity {
             if(course != null)
                 et.setText(course);
             else
-                et.setText("COURSE");
+                et.setHint("Enter COURSE");
         }
-        else{
+        else if(passedData.equals("college")){
             String college = sharedPreferences.getString(ProfileActivity.KEY_COLLEGE, null);
 
             if(college != null)
                 et.setText(college);
             else
-                et.setText("COLLEGE");
+                et.setHint("Enter COLLEGE");
         }
+        else if(passedData.equals("username")){
+            String username = sharedPreferences.getString(MainActivity.KEY_USERNAME, null);
+            if(username != null){
+                et.setText(username);
+                tv.setText("Hello, " + username);
+            }
+            else{
+                tv.setText("Hello, new user!");
+                et.setHint("Enter USERNAME");
+            }
+
+        }
+
+
 
         submitButton = (Button)findViewById(R.id.submit_button);
 
@@ -62,8 +78,10 @@ public class EditAccountActivity extends AppCompatActivity {
 
                 if(passedData.equals("course"))
                     editor.putString(ProfileActivity.KEY_COURSE, et.getText().toString());
-                else
+                else if(passedData.equals("college"))
                     editor.putString(ProfileActivity.KEY_COLLEGE, et.getText().toString());
+                else if(passedData.equals("username"))
+                    editor.putString(MainActivity.KEY_USERNAME, et.getText().toString());
                 editor.commit();
 
             finish();

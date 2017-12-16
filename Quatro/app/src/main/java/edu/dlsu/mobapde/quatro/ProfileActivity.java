@@ -22,7 +22,6 @@ import java.util.ArrayList;
  */
 
 public class ProfileActivity extends AppCompatActivity {
-    public final static String KEY_USERNAME = "username";
     public final static String KEY_COURSE = "course";
     public final static String KEY_COLLEGE = "college";
 
@@ -54,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String username = sharedPreferences.getString(KEY_USERNAME, null);
+        String username = sharedPreferences.getString(MainActivity.KEY_USERNAME, null);
         String course = sharedPreferences.getString(KEY_COURSE, null);
         String college = sharedPreferences.getString(KEY_COLLEGE, null);
 

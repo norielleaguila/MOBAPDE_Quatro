@@ -61,6 +61,20 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                sharedPreferences.edit().clear().commit();
+
+                i.setClass(getBaseContext(), MainActivity.class);
+
+                startActivity(i);
+            }
+        });
     }
 
     @Override
