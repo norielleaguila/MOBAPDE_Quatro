@@ -8,11 +8,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Asus on 11/14/2017.
@@ -28,6 +31,8 @@ public class ProfileActivity extends AppCompatActivity {
     private Button btnSettings;
 
     private RecyclerView notifs;
+
+    private ArrayList<Notif> notifList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +79,20 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        initList();
+
+        NotifAdapter na = new NotifAdapter(notifList);
+
+        notifs.setAdapter(na);
+        notifs.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false));
+
     }
+
+    private void initList(){
+        notifList = new ArrayList<>();
+        notifList.add(new Notif("Caleb Pensica", "upvoted"));
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
